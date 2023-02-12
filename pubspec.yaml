@@ -40,6 +40,22 @@ dependencies:
   cupertino_icons: ^1.0.2
   table_calendar: ^3.0.9
   syncfusion_flutter_calendar: ^20.4.44
+  get: 4.6.5
+  flutter_svg: 1.0.3
+  country_code_picker: ^2.0.2
+  pinput: ^1.2.2
+  calendar_timeline: ^1.0.5
+  flutter_rating_bar: ^4.0.0
+  image_picker: ^0.8.4+11
+  flutter_barcode_scanner: ^2.0.0
+  barcode_widget: ^2.0.3
+  persistent_bottom_nav_bar: ^5.0.2
+  dropdown_button2: ^1.9.2
+  file_picker: ^5.2.5
+  quickalert: ^1.0.1
+  cloud_firestore: ^4.3.1
+  firebase_core_dart: ^1.0.1
+  firebase_storage: ^11.0.10
 
 dev_dependencies:
   flutter_test:

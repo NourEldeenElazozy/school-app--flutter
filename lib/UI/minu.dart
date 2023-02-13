@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:students_mobile/HomeScreen/dawer_home.dart';
+import 'package:students_mobile/HomeScreen/HomeScreen.dart';
+import 'package:students_mobile/Notification/notification_screen.dart';
+
+
 
 import 'package:students_mobile/UI/calendar.dart';
 import 'package:students_mobile/shared/components/components.dart';
@@ -38,7 +41,7 @@ class _barState extends State<bar> {
               currentIndex=2;
               navigateAndFinish(
                 context,
-                HomeScreen(),
+                NotificationScreen(),
               );
             }
           }
@@ -47,6 +50,7 @@ class _barState extends State<bar> {
 
 
         },
+
         type: BottomNavigationBarType.fixed,
         currentIndex: currentIndex,
         items: const [

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "770927907053",
+    "project_id": "educational-platform-8dd63",
+    "storage_bucket": "educational-platform-8dd63.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770927907053:android:48941cf56ba8f515f87ce4",
+        "android_client_info": {
+          "package_name": "com.students_mobile.students_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "770927907053-u69ef9orqetl030h4acjenlhf59b1qjd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA85KqKAPBT_qPI2UiHMofoknpLe_cLjgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "770927907053-u69ef9orqetl030h4acjenlhf59b1qjd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

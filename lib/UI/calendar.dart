@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:students_mobile/UI/minu.dart';
+import 'package:students_mobile/shared/components/components.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../utils.dart';
@@ -89,7 +90,9 @@ class _TableEventsExampleState extends State<TableEventsExample> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('TableCalendar - Events'),
+          centerTitle: true,
+          backgroundColor: mainColor,
+          title: const Text('SCHOOL APP', textAlign: TextAlign.center),
         ),
         body: Column(
           children: [

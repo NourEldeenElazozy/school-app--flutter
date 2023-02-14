@@ -29,6 +29,13 @@
             {
               "client_id": "770927907053-u69ef9orqetl030h4acjenlhf59b1qjd.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "770927907053-9g0fqo32lvlpcrbkshtukahrta0cjenq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.studentsmobile.studentsMobile"
+              }
             }
           ]
         }

@@ -10,17 +10,17 @@ import 'package:students_mobile/shared/components/components.dart';
 
 
 
-class LoginScreen extends StatefulWidget {
+class LoginTeachersScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _LoginTeachersScreenState createState() => _LoginTeachersScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginTeachersScreenState extends State<LoginTeachersScreen> {
   late String test;
   logInmethod(userName, pass) async {
 
     await FirebaseFirestore.instance
-        .collection('users')
+        .collection('teachers')
         .where("username", isEqualTo: userName.toString())
         .where("password", isEqualTo: pass.toString())
         .get()
@@ -30,18 +30,21 @@ class _LoginScreenState extends State<LoginScreen> {
         event.docs.single.data(); //if it is a single document
 
         event.docs.forEach((f) {
-          User.documentID = f.reference.id;
+          Teachers.documentID = f.reference.id;
           print("documentID---- ${f.reference.id}");
         });
-
-        test = "yes data";
-        User.name = documentData['name'];
-        User.phone = documentData['phone'];
-        User.password = documentData['password'];
-        User.city = documentData['city'];
-        User.numOfOrders = documentData['numOfOrders'];
-        //test=documentData['name'];
         print("yes data");
+        test = "yes data";
+        Teachers.name = documentData['name'];
+        Teachers.phone = documentData['phone'];
+        Teachers.password = documentData['password'];
+        Teachers.city = documentData['city'];
+        Teachers.subject = documentData['subject'];
+        Teachers.section = documentData['section'];
+        print("6");
+        //test=documentData['name'];
+
+        print(Teachers.section);
       }
       if (event.docs.isEmpty) {
         test = "no data";
@@ -155,23 +158,23 @@ class _LoginScreenState extends State<LoginScreen> {
                                 await logInmethod(
                                     userNameController.text.toString(),
                                     passwordController.text.toString());
-                              if (test == 'no data') {
-                              final snackBar = SnackBar(
-                              content: mediumText(
-                              'اسم المستخدم او كلمة المرور غير صحيحة',
-                              ColorResources.whiteF6F,
-                              14),
-                              backgroundColor: (Colors.red),
-                              action: SnackBarAction(
-                              label: 'موافق',
-                              onPressed: () {},
-                              ),
-                              );
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackBar);
-                              } else if (test == 'yes data') {
-                              Get.off(HomeScreen());
-                              }
+                                if (test == 'no data') {
+                                  final snackBar = SnackBar(
+                                    content: mediumText(
+                                        'اسم المستخدم او كلمة المرور غير صحيحة',
+                                        ColorResources.whiteF6F,
+                                        14),
+                                    backgroundColor: (Colors.red),
+                                    action: SnackBarAction(
+                                      label: 'موافق',
+                                      onPressed: () {},
+                                    ),
+                                  );
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
+                                } else if (test == 'yes data') {
+                                  Get.off(HomeScreen());
+                                }
 
 
                                 /*

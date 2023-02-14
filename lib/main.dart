@@ -1,9 +1,11 @@
 
+import 'package:students_mobile/AuthScreens/Login.dart';
+import 'package:students_mobile/AuthScreens/WelcomeScreen.dart';
 import 'package:students_mobile/HomeScreen/HomeScreen.dart';
 import 'package:students_mobile/Utiils/colors.dart';
 import 'package:students_mobile/Utiils/text_font_family.dart';
 
-import 'firebase_options.dart';
+
 
 
 import 'package:flutter/material.dart';
@@ -11,6 +13,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:students_mobile/firebase_options.dart';
 
 void main() async  {
 
@@ -38,7 +41,7 @@ class DoctorApp extends StatelessWidget {
         buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
         fontFamily: TextFontFamily.AVENIR_LT_PRO_BOOK,
       ),
-      home: HomeScreen(),
+      home: WelcomeScreen(),
     );
   }
 }

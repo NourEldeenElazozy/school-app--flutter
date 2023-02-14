@@ -4,27 +4,35 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:students_mobile/UI/minu.dart';
 import 'package:students_mobile/Utiils/colors.dart';
 import 'package:students_mobile/Utiils/common_widgets.dart';
+import 'package:students_mobile/shared/components/components.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 
 class NotificationScreen extends StatelessWidget {
    NotificationScreen({Key? key}) : super(key: key);
-  final CollectionReference notifications =
-  FirebaseFirestore.instance.collection('notifications');
+  final CollectionReference Notices =
+  FirebaseFirestore.instance.collection('Notices');
   @override
+
   Widget build(BuildContext context) {
+
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: mainColor,
+          title: const Text('SCHOOL APP', textAlign: TextAlign.center),
+        ),
         body: Column(
           children: [
             Flexible(
               child: StreamBuilder(
-                stream: notifications.snapshots(), //build connection
+                stream: Notices.snapshots(), //build connection
                 builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                   if (streamSnapshot.hasData) {
                     return ListView.builder(
-                      itemCount:2,  //number of rows
+                      itemCount:1,  //number of rows
                       itemBuilder: (context, index) {
                         final DocumentSnapshot documentSnapshot =
                         streamSnapshot.data!.docs[index];
@@ -57,7 +65,7 @@ class NotificationScreen extends StatelessWidget {
                                         children:  [
                                          Image(image: AssetImage('assets/images/logo.png'),width: 120,height: 120,fit: BoxFit.cover),
                                           bookText(
-                                             'نص تجريبي', ColorResources.grey777, 25),
+                                              documentSnapshot['description'], ColorResources.grey777, 25),
 
                                         ],
                                       ),

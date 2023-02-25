@@ -19,19 +19,19 @@ import 'package:table_calendar/table_calendar.dart';
 
 import '../utils.dart';
 
-class TableEventsExample extends StatefulWidget {
-  const TableEventsExample({super.key});
+class AddtestScreen extends StatefulWidget {
+  const AddtestScreen({super.key});
 
   @override
-  _TableEventsExampleState createState() => _TableEventsExampleState();
+  _AddtestScreenState createState() => _AddtestScreenState();
 }
 
-class _TableEventsExampleState extends State<TableEventsExample> {
+class _AddtestScreenState extends State<AddtestScreen> {
   late final ValueNotifier<List<Event>> _selectedEvents;
   CalendarFormat _calendarFormat = CalendarFormat.month;
   final TextEditingController contentController = TextEditingController();
   final TextEditingController titleController = TextEditingController();
-  final TextEditingController dateController = TextEditingController();
+   final TextEditingController dateController = TextEditingController();
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode
       .toggledOff; // Can be toggled on/off by longpressing a date
   DateTime _focusedDay = DateTime.now();
@@ -120,17 +120,8 @@ class _TableEventsExampleState extends State<TableEventsExample> {
     }
   }
 
-
-  final List<Meeting> meetings = <Meeting>[];
   @override
   Widget build(BuildContext context) {
-    meetings.forEach((res){
-      print('res');
-        print(res.eventName);
-      print(res.from);
-
-    });
-    print(meetings.first);
     List<String> _section=[];
     for (int i = 0; i < Teachers.section.length; i++) {
 
@@ -141,7 +132,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
       textDirection: TextDirection.rtl,
 
       child: Scaffold(
-          bottomNavigationBar: const bar(),
+          bottomNavigationBar: const Teachersbar(),
           appBar: AppBar(
             centerTitle: true,
             backgroundColor: mainColor,
@@ -162,23 +153,30 @@ class _TableEventsExampleState extends State<TableEventsExample> {
                     height: 20,
                   ),
                   Container(
-                    height: 500,
+                    height: 350,
                     child: SfCalendar(
 
-                      onTap: (calendarTapDetails) {
-                        print(meetings);
-                        DateTime? now =calendarTapDetails.date;
+         onTap: (calendarTapDetails) {
+                    DateTime? now =calendarTapDetails.date;
 
-                        dateController.text = aa.DateFormat('yyyy-MM-dd').format(now!);
+                    dateController.text = aa.DateFormat('yyyy-MM-dd').format(now!);
 
 
-                      },
+         },
 
                       cellBorderColor: Colors.green,
                       todayHighlightColor:Colors.red ,
 
-
-
+                      allowedViews: const <CalendarView>[
+                        CalendarView.day,
+                        CalendarView.week,
+                        CalendarView.workWeek,
+                        CalendarView.month,
+                        CalendarView.timelineDay,
+                        CalendarView.timelineWeek,
+                        CalendarView.timelineWorkWeek,
+                        CalendarView.schedule
+                      ],
                       backgroundColor: ColorResources.greyEDE,
                       appointmentTextStyle: TextStyle(fontFamily: TextFontFamily.KHALED_FONT,color: Colors.black),
                       view: CalendarView.month,
@@ -188,6 +186,92 @@ class _TableEventsExampleState extends State<TableEventsExample> {
                     ),
                   ),
 
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                          width: 250,
+                          child: TextField(
+                            maxLines: 1,
+                            controller: titleController,
+                            decoration: InputDecoration(
+                              hintText: 'العنوان',
+                              hintStyle: TextStyle(fontFamily: TextFontFamily.KHALED_FONT),
+
+                            ),
+                          )),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      mediumText('الفصل الدراسي', ColorResources.black4A4, 16),
+                      DropdownButton<String>(
+                        hint: bookText(selectedLocation,ColorResources.black4A4,16),
+
+
+                        items: _section.map((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: mediumText(value,ColorResources.black4A4,16),
+                          );
+                        }).toList(),
+
+                        onChanged: (newVal) {
+
+                          selectedLocation=newVal!;
+                          print(newVal);
+
+                          this.setState(() {
+
+
+
+                          });
+                        },
+                      ),
+
+
+
+
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(child:   Container(
+                        child: InkWell(
+                          onTap: (){
+                            print(dateController.text);
+
+                            addTest(titleController.text,Teachers.name,
+                                Teachers.subject,selectedLocation,dateController.text);
+                            QuickAlert.show(
+                              title: '',
+                              text:'تم إضافة الاختبار بنجاح',
+                              confirmBtnText: 'موافق',
+                              onConfirmBtnTap: () => Get.back(),
+                              context: context,
+                              type: QuickAlertType.success,
+                            );
+
+                          },
+                          child: Padding(padding: EdgeInsets.all(20),
+                            child:commonButton(null , 'حفظ', ColorResources.custom, ColorResources.whiteF6F) ,
+
+                          ),
+                        ),
+                      ),)
+
+                    ],
+                  ),
 
 
                 ],
@@ -201,16 +285,17 @@ class _TableEventsExampleState extends State<TableEventsExample> {
   }
 
   List<Meeting> _getDataSource() {
-
+    final List<Meeting> meetings = <Meeting>[];
     final DateTime today = DateTime.now();
-    final DateTime startTime =DateTime.parse("2023-03-01");
+    final DateTime startTime =
+    DateTime(today.year, today.month, today.day, 9, 0, 0);
     final DateTime endTime = startTime.add(const Duration(hours: 2));
-
-
     meetings.add(
-      Meeting('saAA', DateTime.parse("2023-03-01"), endTime, const Color(0xFF0F8644), false),
+        Meeting('اختبار حاسوب', startTime, endTime, const Color(0xFF0F8644), false),
     );
-
+    meetings.add(
+      Meeting('اختبار رياضيات', startTime.add(const Duration(days: 40)), endTime, const Color(0xFF0F8644), false),
+    );
     return meetings;
   }
 }

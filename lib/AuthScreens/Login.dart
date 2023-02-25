@@ -20,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
   logInmethod(userName, pass) async {
 
     await FirebaseFirestore.instance
-        .collection('users')
+        .collection('students')
         .where("username", isEqualTo: userName.toString())
         .where("password", isEqualTo: pass.toString())
         .get()
@@ -35,13 +35,16 @@ class _LoginScreenState extends State<LoginScreen> {
         });
 
         test = "yes data";
-        User.name = documentData['name'];
+        User.name = documentData['studentName'];
         User.phone = documentData['phone'];
         User.password = documentData['password'];
         User.city = documentData['city'];
-        User.numOfOrders = documentData['numOfOrders'];
+
+        User.section = documentData['section']['label'];
+
         //test=documentData['name'];
-        print("yes data");
+
+
       }
       if (event.docs.isEmpty) {
         test = "no data";
@@ -170,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(snackBar);
                               } else if (test == 'yes data') {
-                              Get.off(HomeScreen());
+                             Get.off(HomeScreen());
                               }
 
 

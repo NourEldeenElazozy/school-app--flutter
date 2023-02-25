@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:students_mobile/HomeScreen/HomeScreen.dart';
+import 'package:students_mobile/HomeScreen/HomeTeachersScreen.dart';
 import 'package:students_mobile/Utiils/User.dart';
 import 'package:students_mobile/Utiils/colors.dart';
 import 'package:students_mobile/Utiils/common_widgets.dart';
@@ -35,7 +36,7 @@ class _LoginTeachersScreenState extends State<LoginTeachersScreen> {
         });
         print("yes data");
         test = "yes data";
-        Teachers.name = documentData['name'];
+        Teachers.name = documentData['fullName'];
         Teachers.phone = documentData['phone'];
         Teachers.password = documentData['password'];
         Teachers.city = documentData['city'];
@@ -173,7 +174,7 @@ class _LoginTeachersScreenState extends State<LoginTeachersScreen> {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(snackBar);
                                 } else if (test == 'yes data') {
-                                  Get.off(HomeScreen());
+                                  Get.off(HomeTeachersScreen());
                                 }
 
 

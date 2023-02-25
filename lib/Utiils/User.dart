@@ -5,6 +5,7 @@ class User {
   static var phone;
   static var city;
   static var numOfOrders;
+  static var section;
   static var documentID;
   static var ticket;
 }

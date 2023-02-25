@@ -20,7 +20,7 @@ class Images {
   static const visibilityOffIcon = "assets/images/visibilityOffIcon.svg";
   static const arrowDownIcon = "assets/images/arrowDownIcon.svg";
   static const phoneIcon = "assets/images/phoneIcon.svg";
-  static const cameraImage = "assets/images/cameraImage.svg";
+  static const cameraImage = "assets/images/cameraImage2.svg";
   static const profileDefaltImage = "assets/images/profileDefaltImage.svg";
   static const report = "assets/images/report.png";
   static const groupPeopleIcon = "assets/images/groupPeopleIcon.svg";

@@ -1,4 +1,5 @@
 import 'package:students_mobile/AuthScreens/Login.dart';
+import 'package:students_mobile/AuthScreens/LoginRegisteredScreen.dart';
 import 'package:students_mobile/AuthScreens/LoginTeachersScreen.dart';
 
 import 'package:students_mobile/Utiils/colors.dart';
@@ -70,6 +71,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
                       ),
                     ),
+                    Divider(height: 80),
+
+
+                    TextButton(
+                        onPressed: (){
+                          Get.to(LoginRegisteredScreen());
+                        },
+                        child: mediumText('الدخول كـ مسجل حضور', ColorResources.blue0C1, 18)),
 
                   ],
                 )

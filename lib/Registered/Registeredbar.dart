@@ -11,14 +11,14 @@ import 'package:students_mobile/Teachers/Test.dart';
 import 'package:students_mobile/UI/calendar.dart';
 import 'package:students_mobile/shared/components/components.dart';
 
-class Teachersbar extends StatefulWidget {
-  const Teachersbar({Key? key}) : super(key: key);
+class Registeredbar extends StatefulWidget {
+  const Registeredbar({Key? key}) : super(key: key);
 
   @override
-  State<Teachersbar> createState() => _TeachersbarState();
+  State<Registeredbar> createState() => _RegisteredbarState();
 }
 
-class _TeachersbarState extends State<Teachersbar> {
+class _RegisteredbarState extends State<Registeredbar> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,24 +31,18 @@ class _TeachersbarState extends State<Teachersbar> {
               currentIndex=0;
               navigateAndFinish(
                 context,
-                HomeTeachersScreen(),
+                AttendanceScreen(),
               );
             }
             if(index==1){
               currentIndex=1;
               navigateAndFinish(
                 context,
-                AddPostScreen(),
+                AttendanceScreen(),
               );
             }
 
-            if(index==2){
-              currentIndex=2;
-              navigateAndFinish(
-                context,
-                AddtestScreen(),
-              );
-            }
+
           }
 
 
@@ -60,19 +54,16 @@ class _TeachersbarState extends State<Teachersbar> {
         currentIndex: currentIndex,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'الرئيسية',
+            icon: Icon(Icons.access_time_rounded),
+            label: 'تسجيل الحضور والغياب',
             backgroundColor: Color.fromRGBO(2, 37, 73, 0.9254901960784314),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_circle_outline),
-            label: 'إضافة منشور',
+            icon: Icon(Icons.paste_sharp),
+            label: 'كشف الحضور و الغياب',
           ),
 
-          BottomNavigationBarItem(
-            icon: Icon(Icons.quiz_outlined),
-            label: 'إضافة اختبار',
-          ),
+
 
         ],
       ),

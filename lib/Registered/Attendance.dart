@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:students_mobile/Registered/Registeredbar.dart';
 import 'package:students_mobile/UI/Teachersbar.dart';
 import 'package:students_mobile/UI/minu.dart';
 import 'package:students_mobile/Utiils/colors.dart';
@@ -240,7 +241,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
             )
           ],
         ),
-        bottomNavigationBar: const Teachersbar(),
+        bottomNavigationBar: const Registeredbar(),
       ),
     );
   }

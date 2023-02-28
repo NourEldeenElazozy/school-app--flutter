@@ -39,25 +39,23 @@ class _TableEventsExampleState extends State<TableEventsExample> {
   DateTime? _rangeStart;
   DateTime? _rangeEnd;
 
+  CollectionReference test = FirebaseFirestore.instance.collection('test');
 
-  CollectionReference test =
-  FirebaseFirestore.instance.collection('test');
-
-  Future<void> addTest(title, teachers_name, subject,
-      section, dateAdded) {
+  Future<void> addTest(title, teachers_name, subject, section, dateAdded) {
     // Call the user's CollectionReference to add a new user
     return test
         .add({
-      'title': title, // John Doe
-      'teachers_name': teachers_name, // Stokes and Sons
-      'subject': subject,
-      'title': title,
-      'section': section,
-      'dateAdded': dateAdded,
-    })
+          'title': title, // John Doe
+          'teachers_name': teachers_name, // Stokes and Sons
+          'subject': subject,
+          'title': title,
+          'section': section,
+          'dateAdded': dateAdded,
+        })
         .then((value) => print("posts Added"))
         .catchError((error) => print("Failed to add user: $error"));
   }
+
   @override
   void initState() {
     super.initState();
@@ -65,6 +63,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
     _selectedDay = _focusedDay;
     _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
   }
+
   String selectedLocation = '';
 
   @override
@@ -120,26 +119,59 @@ class _TableEventsExampleState extends State<TableEventsExample> {
     }
   }
 
+  Future<void> Testmethod() async {
+    meetings.clear();
+    await FirebaseFirestore.instance
+        .collection('test')
+        .where("section", isEqualTo: User.section)
+        .get()
+        .then(
+      (value) {
+        value.docs.forEach(
+          (result) {
+            if (meetings.length < value.docs.length) {
+              meetings.add(
+                Meeting(
+                    result['title'] + result['subject'],
+                    DateTime.parse(result['dateAdded']),
+                    DateTime.parse(result['dateAdded']),
+                    const Color(0xFF0F8644),
+                    false),
+              );
+            }
+
+            FirebaseFirestore.instance.collection('myOtherCollection222').add(
+                  result.data(),
+                );
+          },
+        );
+      },
+    );
+  }
+
+  Testmethod2() async {
+    await FirebaseFirestore.instance
+        .collection('test')
+        .where("section", isEqualTo: User.section)
+        .get()
+        .then((event) {
+      if (event.docs.isNotEmpty) {
+        print(event.docs.single['teachers_name']);
+      }
+
+      if (event.docs.isEmpty) {
+        print('no data');
+      }
+    }).catchError((e) => print("error fetching data: $e"));
+  }
 
   final List<Meeting> meetings = <Meeting>[];
   @override
   Widget build(BuildContext context) {
-    meetings.forEach((res){
-      print('res');
-        print(res.eventName);
-      print(res.from);
-
-    });
-    print(meetings.first);
-    List<String> _section=[];
-    for (int i = 0; i < Teachers.section.length; i++) {
-
-      _section.add(Teachers.section[i]['label']);
-    };
+    Testmethod();
 
     return Directionality(
       textDirection: TextDirection.rtl,
-
       child: Scaffold(
           bottomNavigationBar: const bar(),
           appBar: AppBar(
@@ -155,7 +187,8 @@ class _TableEventsExampleState extends State<TableEventsExample> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      mediumText('إضافة اختبار', ColorResources.custom, 20)
+                      mediumText('الإختبارات و المهام الإسبوعية',
+                          ColorResources.custom, 20)
                     ],
                   ),
                   const SizedBox(
@@ -163,60 +196,64 @@ class _TableEventsExampleState extends State<TableEventsExample> {
                   ),
                   Container(
                     height: 500,
-                    child: SfCalendar(
+                    child: FutureBuilder(
+                        future: Testmethod(),
+                        builder: (ctx, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.done) {
+                            print('done');
+                            return SfCalendar(
+                              onTap: (calendarTapDetails) {
+                                print(meetings);
+                                DateTime? now = calendarTapDetails.date;
 
-                      onTap: (calendarTapDetails) {
-                        print(meetings);
-                        DateTime? now =calendarTapDetails.date;
-
-                        dateController.text = aa.DateFormat('yyyy-MM-dd').format(now!);
-
-
-                      },
-
-                      cellBorderColor: Colors.green,
-                      todayHighlightColor:Colors.red ,
-
-
-
-                      backgroundColor: ColorResources.greyEDE,
-                      appointmentTextStyle: TextStyle(fontFamily: TextFontFamily.KHALED_FONT,color: Colors.black),
-                      view: CalendarView.month,
-                      dataSource: MeetingDataSource(_getDataSource()),
-                      monthViewSettings: const MonthViewSettings(
-                          appointmentDisplayMode: MonthAppointmentDisplayMode.appointment),
-                    ),
+                                dateController.text =
+                                    aa.DateFormat('yyyy-MM-dd').format(now!);
+                              },
+                              cellBorderColor: Colors.green,
+                              todayHighlightColor: Colors.red,
+                              backgroundColor: ColorResources.greyEDE,
+                              appointmentTextStyle: TextStyle(
+                                  fontFamily: TextFontFamily.KHALED_FONT,
+                                  color: Colors.black),
+                              view: CalendarView.schedule,
+                              dataSource: MeetingDataSource(_getDataSource()),
+                              monthViewSettings: const MonthViewSettings(
+                                  appointmentDisplayMode:
+                                      MonthAppointmentDisplayMode.appointment),
+                            );
+                          } else {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        }),
                   ),
-
-
-
                 ],
               ),
             ),
-          )
-
-      ),
-
+          )),
     );
   }
 
   List<Meeting> _getDataSource() {
-
     final DateTime today = DateTime.now();
-    final DateTime startTime =DateTime.parse("2023-03-01");
+    final DateTime startTime = DateTime.parse("2023-03-01");
     final DateTime endTime = startTime.add(const Duration(hours: 2));
 
-
-    meetings.add(
+/*
+ meetings.add(
       Meeting('saAA', DateTime.parse("2023-03-01"), endTime, const Color(0xFF0F8644), false),
     );
+
+ */
 
     return meetings;
   }
 }
 
 class MeetingDataSource extends CalendarDataSource {
-  MeetingDataSource(List<Meeting> source){
+  MeetingDataSource(List<Meeting> source) {
     appointments = source;
   }
 
@@ -254,5 +291,4 @@ class Meeting {
   DateTime to;
   Color background;
   bool isAllDay;
-
 }

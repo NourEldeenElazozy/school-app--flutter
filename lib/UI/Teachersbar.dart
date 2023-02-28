@@ -3,6 +3,7 @@ import 'package:students_mobile/HomeScreen/HomeScreen.dart';
 import 'package:students_mobile/HomeScreen/HomeTeachersScreen.dart';
 import 'package:students_mobile/Notification/notification_screen.dart';
 import 'package:students_mobile/Teachers/AddPost.dart';
+import 'package:students_mobile/Teachers/Attendance.dart';
 import 'package:students_mobile/Teachers/Test.dart';
 
 
@@ -44,7 +45,7 @@ class _TeachersbarState extends State<Teachersbar> {
               currentIndex=2;
               navigateAndFinish(
                 context,
-                NotificationScreen(),
+                AttendanceScreen(),
               );
             }
             if(index==3){

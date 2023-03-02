@@ -42,7 +42,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
     await FirebaseFirestore.instance.collection('students').get().then(
           (value) {
             FirebaseFirestore.instance.collection('Attendance')
-                .where("ddate", isEqualTo: '${date.year}/${date.month}/${date.day}').
+                .where("ddate", isEqualTo: '${date.year}-${date.month}-${date.day}').
             get().then((value2) => {
               if(value2.docs.isEmpty){
 
@@ -50,7 +50,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
 
               FirebaseFirestore.instance.collection('Attendance').add({
                 'absence': 0,
-                'ddate':'${date.year}/${date.month}/${date.day}',
+                'ddate':'${date.year}-${date.month}-${date.day}',
                 'section': result['section.label'],
                 'student_name': result['studentName'],
               })
@@ -102,7 +102,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 mediumText('اليوم', ColorResources.redF21, 20),
-                mediumText('${date.year}/${date.month}/${date.day}',
+                mediumText('${date.year}-${date.month}-${date.day}',
                     ColorResources.redF21, 20)
               ],
             ),
@@ -148,7 +148,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                 stream: FirebaseFirestore.instance
                     .collection('Attendance')
                     .where('section', isEqualTo: selectedLocation)
-                    .where('ddate', isEqualTo: '${date.year}/${date.month}/${date.day}')
+                    .where('ddate', isEqualTo: '${date.year}-${date.month}-${date.day}')
                     .snapshots(),
                 builder:
                     (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {

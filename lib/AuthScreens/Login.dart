@@ -39,6 +39,8 @@ class _LoginScreenState extends State<LoginScreen> {
         User.phone = documentData['phone'];
         User.password = documentData['password'];
         User.city = documentData['city'];
+        User.studentName= documentData['studentName'];
+
 
         User.section = documentData['section']['label'];
 

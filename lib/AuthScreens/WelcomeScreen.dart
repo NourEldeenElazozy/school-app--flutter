@@ -6,6 +6,7 @@ import 'package:students_mobile/Utiils/colors.dart';
 import 'package:students_mobile/Utiils/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 
 
 import 'package:get/get.dart';
@@ -79,6 +80,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           Get.to(LoginRegisteredScreen());
                         },
                         child: mediumText('الدخول كـ مسجل حضور', ColorResources.blue0C1, 18)),
+                    Divider(height: Get.height/15),
+                  mediumText('نسخة التطبيق V1.0', ColorResources.greyA0A, 14)
 
                   ],
                 )

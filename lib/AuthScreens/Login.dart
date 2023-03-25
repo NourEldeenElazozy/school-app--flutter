@@ -85,8 +85,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       ),
 
-                      const Text(
-                        'سجل دخولك كي تتمكن من استخدام التطبيق',
+                       Text(
+                        'WelcomeText'.tr,
                       ),
                       const SizedBox(
                         height: 20.0,
@@ -104,11 +104,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                           return null;
                         },
-                        decoration: const InputDecoration(
+                        decoration:  InputDecoration(
                           prefixIcon: Icon(
                             Icons.supervised_user_circle_outlined,
                           ),
-                          labelText: "اسم المستخدم ",
+                          labelText: "UserName".tr,
                           border: OutlineInputBorder(),
                         ),
                       ),
@@ -139,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
 
                           ),
-                          labelText: 'كلمة المرور',
+                          labelText: 'PassWord'.tr,
                           border: const OutlineInputBorder(),
                         ),
                       ),
@@ -163,12 +163,12 @@ class _LoginScreenState extends State<LoginScreen> {
                               if (test == 'no data') {
                               final snackBar = SnackBar(
                               content: mediumText(
-                              'اسم المستخدم او كلمة المرور غير صحيحة',
+                              'ErrorMsg'.tr,
                               ColorResources.whiteF6F,
                               14),
                               backgroundColor: (Colors.red),
                               action: SnackBarAction(
-                              label: 'موافق',
+                              label: 'Ok'.tr,
                               onPressed: () {},
                               ),
                               );
@@ -188,7 +188,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                            */
                               }
-                            },child: const Text('دخول')
+                            },child:  Text('LogIn'.tr)
                         ),
                       ),
                       const SizedBox(

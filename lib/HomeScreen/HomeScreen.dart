@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         backgroundColor: grayColor,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           centerTitle: true,
           backgroundColor: mainColor,
           title: const Text('SCHOOL APP', textAlign: TextAlign.center),

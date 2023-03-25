@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:students_mobile/HomeScreen/HomeScreen.dart';
 import 'package:students_mobile/Notification/notification_screen.dart';
 
@@ -53,19 +54,19 @@ class _barState extends State<bar> {
 
         type: BottomNavigationBarType.fixed,
         currentIndex: currentIndex,
-        items: const [
+        items:  [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'الرئيسية',
+            label: 'Home'.tr,
             backgroundColor: Color.fromRGBO(2, 37, 73, 0.9254901960784314),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_month_sharp),
-            label: 'التقويم',
+            label: 'Calendar'.tr,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications_active),
-            label: 'الإشعارات',
+            label: 'Notification'.tr,
           ),
 
         ],

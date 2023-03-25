@@ -36,7 +36,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(  centerTitle: true,backgroundColor: mainColor,
-            title:  const Text('SCHOOL APP', textAlign: TextAlign.center),
+            title:   Text('SCHOOL APP', textAlign: TextAlign.center),
           ),
           body:Padding(
             padding: const EdgeInsets.all(20.0),
@@ -58,7 +58,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         Get.to(LoginTeachersScreen());
                       },
                       child: Padding(padding: EdgeInsets.all(20),
-                        child:commonButton(null, 'معلم', ColorResources.blue0C1, ColorResources.whiteF6F) ,
+                        child:commonButton(null, 'Teacher'.tr, ColorResources.blue0C1, ColorResources.whiteF6F) ,
 
                       ),
                     ),
@@ -68,7 +68,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         Get.to(LoginScreen());
                       },
                       child: Padding(padding: EdgeInsets.all(20),
-                        child:commonButton(null , 'طالب', ColorResources.custom, ColorResources.whiteF6F) ,
+                        child:commonButton(null , 'Student'.tr, ColorResources.custom, ColorResources.whiteF6F) ,
 
                       ),
                     ),
@@ -79,9 +79,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         onPressed: (){
                           Get.to(LoginRegisteredScreen());
                         },
-                        child: mediumText('الدخول كـ مسجل حضور', ColorResources.blue0C1, 18)),
+                        child: mediumText('LogType'.tr, ColorResources.blue0C1, 18)),
                     Divider(height: Get.height/15),
-                  mediumText('نسخة التطبيق V1.0', ColorResources.greyA0A, 14)
+                  mediumText('AppV'.tr, ColorResources.greyA0A, 14)
 
                   ],
                 )

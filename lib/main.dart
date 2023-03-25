@@ -5,7 +5,7 @@ import 'package:students_mobile/HomeScreen/HomeScreen.dart';
 import 'package:students_mobile/Utiils/colors.dart';
 import 'package:students_mobile/Utiils/text_font_family.dart';
 
-
+import 'Languages.dart';
 
 
 import 'package:flutter/material.dart';
@@ -34,6 +34,9 @@ class DoctorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      translations: Languages(),
+      locale: Get.deviceLocale,
+      fallbackLocale: const Locale('ar', 'LY'),
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

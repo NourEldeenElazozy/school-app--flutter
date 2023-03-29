@@ -67,9 +67,7 @@ class _LoginRegisteredScreenState extends State<LoginRegisteredScreen> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
           backgroundColor: Colors.white,
-          appBar: AppBar(  centerTitle: true,backgroundColor: mainColor,
-            title:  const Text('SCHOOL APP', textAlign: TextAlign.center),
-          ),
+
           body:  Form(
             key: formKey,
             child: Center(

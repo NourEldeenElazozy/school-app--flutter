@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-const mainColor =  Color(0xFF7286D3);
+const mainColor =  Color(0xFF00D179);
 const secondColor =  Color(0xFFE5E0FF);
 const defaultColor = Colors.blue;
 const grayColor = Color(0xFFE5E5E5);

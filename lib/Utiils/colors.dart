@@ -8,7 +8,7 @@ class ColorResources{
   static const Color greyA0A = Color(0xffA0A2B3);
   static const Color greyAAA = Color(0xffAAABAB);
   static const Color grey777 = Color(0xff777A95);
-  static const Color blue0C1 = Color(0xff0C174B);
+  static const Color blue0C1 = Color(0xff69a88d);
   static const Color black = Color(0xff000000);
   static const Color greyEDE = Color(0xffEDEEEF);
   static const Color grey9AA = Color(0xff9AA0B8);
@@ -22,6 +22,6 @@ class ColorResources{
   static const Color redF21 = Color(0xffF21D52);
   static const Color redF22 = Color(0xfff21d2f);
 
-  static const Color custom = Color(0xff303972);
+  static const Color custom = Color(0xff00d179);
   static const Color yellow = Color(0xffffa500);
 }

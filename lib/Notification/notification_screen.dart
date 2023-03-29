@@ -19,11 +19,7 @@ class NotificationScreen extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: mainColor,
-          title: const Text('SCHOOL APP', textAlign: TextAlign.center),
-        ),
+
         body: Column(
           children: [
             Flexible(

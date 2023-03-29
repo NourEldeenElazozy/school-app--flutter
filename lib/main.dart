@@ -4,6 +4,7 @@ import 'package:students_mobile/AuthScreens/WelcomeScreen.dart';
 import 'package:students_mobile/HomeScreen/HomeScreen.dart';
 import 'package:students_mobile/Utiils/colors.dart';
 import 'package:students_mobile/Utiils/text_font_family.dart';
+import 'package:students_mobile/on_boarding/on_boarding_screen.dart';
 
 import 'Languages.dart';
 
@@ -44,7 +45,7 @@ class DoctorApp extends StatelessWidget {
         buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
         fontFamily: TextFontFamily.AVENIR_LT_PRO_BOOK,
       ),
-      home: WelcomeScreen(),
+      home: OnBoardScreen(),
     );
   }
 }

@@ -172,91 +172,88 @@ class _TableEventsExampleState extends State<TableEventsExample> {
   Widget build(BuildContext context) {
     Testmethod();
 
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-            bottomNavigationBar: const bar(),
-            appBar: AppBar(
-              bottom:  TabBar(
-                tabs: [
-                  Tab(child: mediumText('المهام الاسبوعية', ColorResources.white, 18),),
-                  Tab(child: mediumText('الحضور و الغياب', ColorResources.white, 18),),
-
-                ],
-              ),
-              centerTitle: true,
-              backgroundColor: mainColor,
-              title: const Text('SCHOOL APP', textAlign: TextAlign.center),
-            ),
-            body: TabBarView(
-              children: [
-                SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            mediumText('الإختبارات و المهام الإسبوعية',
-                                ColorResources.custom, 20)
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          height: 500,
-                          child: FutureBuilder(
-                              future: Testmethod(),
-                              builder: (ctx, snapshot) {
-                                if (snapshot.connectionState ==
-                                    ConnectionState.done) {
-                                  print('done');
-                                  return SfCalendar(
-                                    onTap: (calendarTapDetails) {
-                                      print(meetings);
-                                      DateTime? now = calendarTapDetails.date;
-
-                                      dateController.text =
-                                          aa.DateFormat('yyyy-MM-dd').format(now!);
-                                    },
-                                    cellBorderColor: Colors.green,
-                                    todayHighlightColor: Colors.red,
-                                    backgroundColor: ColorResources.greyEDE,
-                                    appointmentTextStyle: TextStyle(
-                                        fontFamily: TextFontFamily.KHALED_FONT,
-                                        color: Colors.black),
-                                    view: CalendarView.schedule,
-                                    dataSource: MeetingDataSource(_getDataSource()),
-                                    monthViewSettings: const MonthViewSettings(
-                                        appointmentDisplayMode:
-                                        MonthAppointmentDisplayMode.appointment),
-                                  );
-                                } else {
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                }
-                              }),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                CalendarApp(),
-
-
-
-
-
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+          bottomNavigationBar: const bar(),
+          appBar: AppBar(
+            bottom:  TabBar(
+              tabs: [
+                Tab(child: mediumText('المهام الاسبوعية', ColorResources.white, 18),),
+                Tab(child: mediumText('الحضور و الغياب', ColorResources.white, 18),),
 
               ],
+            ),
+            centerTitle: true,
+            backgroundColor: mainColor,
+            title: const Text('SCHOOL APP', textAlign: TextAlign.center),
+          ),
+          body: TabBarView(
+            children: [
+              SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          mediumText('الإختبارات و المهام الإسبوعية',
+                              ColorResources.custom, 20)
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        height: 500,
+                        child: FutureBuilder(
+                            future: Testmethod(),
+                            builder: (ctx, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.done) {
+                                print('done');
+                                return SfCalendar(
+                                  onTap: (calendarTapDetails) {
+                                    print(meetings);
+                                    DateTime? now = calendarTapDetails.date;
 
-            )),
-      ),
+                                    dateController.text =
+                                        aa.DateFormat('yyyy-MM-dd').format(now!);
+                                  },
+                                  cellBorderColor: Colors.green,
+                                  todayHighlightColor: Colors.red,
+                                  backgroundColor: ColorResources.greyEDE,
+                                  appointmentTextStyle: TextStyle(
+                                      fontFamily: TextFontFamily.KHALED_FONT,
+                                      color: Colors.black),
+                                  view: CalendarView.schedule,
+                                  dataSource: MeetingDataSource(_getDataSource()),
+                                  monthViewSettings: const MonthViewSettings(
+                                      appointmentDisplayMode:
+                                      MonthAppointmentDisplayMode.appointment),
+                                );
+                              } else {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                            }),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              CalendarApp(),
+
+
+
+
+
+
+            ],
+
+          )),
     );
   }
 

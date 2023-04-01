@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:students_mobile/AuthScreens/WelcomeScreen.dart';
 import 'package:students_mobile/UI/minu.dart';
 import 'package:students_mobile/Utiils/colors.dart';
 import 'package:students_mobile/Utiils/common_widgets.dart';
@@ -111,6 +112,14 @@ class _ProfileState extends State<Profile> {
               ElevatedButton(onPressed: (){
                 buildLanguageDialog(context);
               }, child: Text('changelang'.tr)),
+              ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                  ),
+
+                  onPressed: (){
+              Get.to(WelcomeScreen());
+              }, child: Text('LogOut'.tr)),
             ],
           )
         ],

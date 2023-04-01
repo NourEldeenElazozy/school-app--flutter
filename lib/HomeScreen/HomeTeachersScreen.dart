@@ -25,7 +25,7 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: grayColor,
+        backgroundColor: ColorResources.white,
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: mainColor,
@@ -34,23 +34,8 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
         body: Column(
           children: [
             Container(
-              height: 80,
-              child: Row(
-                children:  [
-                  InkWell(
-                    child: const CircleAvatar(
-                      radius: 48, // Image radius
-                      backgroundImage: AssetImage('assets/images/studentw.png'),
-                    ),
-                    onTap: (){
-                      navigateTo(
-                        context,
-                        const Profile(),
-                      );
-                    },
-                  )
-                ],
-              ),
+              height: 20,
+
             ),
             Flexible(
               child: StreamBuilder(
@@ -86,10 +71,7 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
                                                 child: Column(
                                                   children: [
                                                     SizedBox(
-                                                      width:
-                                                      MediaQuery.of(context).size.width * 12,
-                                                      height:
-                                                      MediaQuery.of(context).size.height * 0.55,
+
                                                       child: Column(
 
                                                         children: [

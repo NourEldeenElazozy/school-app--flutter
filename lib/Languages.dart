@@ -24,12 +24,8 @@ class Languages extends Translations {
       'city': 'المدينة',
       'fatherMo': 'رقم هاتف الاب',
       'motherMo': 'رقم هاتف الأم',
-
-
-
-
-
-
+      'Profile': 'حسابي',
+      'LogOut': 'خروج',
 
     },
 
@@ -54,7 +50,8 @@ class Languages extends Translations {
       'city': 'city',
       'fatherMo': 'Father Mobile',
       'motherMo': 'Mother Mobile',
-
+      'Profile': 'Profile',
+      'LogOut': 'LogOut',
 
     },
   };

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:students_mobile/HomeScreen/HomeScreen.dart';
 import 'package:students_mobile/Notification/notification_screen.dart';
+import 'package:students_mobile/Profile/Profile.dart';
 
 
 
@@ -45,6 +46,13 @@ class _barState extends State<bar> {
                 NotificationScreen(),
               );
             }
+            if(index==3){
+              currentIndex=3;
+              navigateAndFinish(
+                context,
+                Profile(),
+              );
+            }
           }
 
 
@@ -67,6 +75,10 @@ class _barState extends State<bar> {
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications_active),
             label: 'Notification'.tr,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile'.tr,
           ),
 
         ],

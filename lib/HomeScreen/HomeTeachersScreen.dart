@@ -16,6 +16,9 @@ class HomeTeachersScreen extends StatefulWidget {
 }
 
 class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
+
+  String selectedLocation = '';
+
   TextEditingController searchController = TextEditingController();
   bool _showWidget = false;
   List<Map<String, dynamic>> _searchResults = [];
@@ -25,7 +28,7 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
       print(_searchResults.length);
       var snapshot = await FirebaseFirestore.instance
           .collection('students')
-          .where('username', isEqualTo: username)
+          .where('username', isEqualTo: username).where('section.label', isEqualTo: selectedLocation)
           .get();
 
       setState(() {
@@ -47,10 +50,13 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
   final CollectionReference posts =
   FirebaseFirestore.instance.collection('posts');
   Widget build(BuildContext context) {
-
+    List<String> _section=[];
     var size, height, width;
     size = MediaQuery.of(context).size;
+    for (int i = 0; i < Teachers.section.length; i++) {
 
+      _section.add(Teachers.section[i]['label']);
+    };
 
     height = size.height;
     width = size.width;
@@ -59,6 +65,31 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
       child: Scaffold(
         backgroundColor: ColorResources.white,
         appBar: AppBar(
+          actions: [
+            DropdownButton<String>(
+              hint: bookText(selectedLocation,ColorResources.black4A4,16),
+
+
+              items: _section.map((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: mediumText(value,ColorResources.black4A4,16),
+                );
+              }).toList(),
+
+              onChanged: (newVal) {
+
+                selectedLocation=newVal!;
+                print(newVal);
+
+                this.setState(() {
+
+
+
+                });
+              },
+            ),
+          ],
           backgroundColor: mainColor,
           title: TextField(
 

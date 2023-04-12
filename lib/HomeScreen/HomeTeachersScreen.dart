@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:students_mobile/Profile/Profile.dart';
+import 'package:students_mobile/Teachers/addDagre.dart';
 import 'package:students_mobile/UI/Teachersbar.dart';
 import 'package:students_mobile/UI/minu.dart';
 import 'package:students_mobile/Utiils/User.dart';
 import 'package:students_mobile/Utiils/colors.dart';
 import 'package:students_mobile/Utiils/common_widgets.dart';
-
+import 'package:get/get.dart';
 import 'package:students_mobile/shared/components/components.dart';
 
 class HomeTeachersScreen extends StatefulWidget {
@@ -15,12 +16,42 @@ class HomeTeachersScreen extends StatefulWidget {
 }
 
 class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
+  TextEditingController searchController = TextEditingController();
+  bool _showWidget = false;
+  List<Map<String, dynamic>> _searchResults = [];
   @override
+  Future<void> searchUser(String username) async {
+    try {
+      print(_searchResults.length);
+      var snapshot = await FirebaseFirestore.instance
+          .collection('students')
+          .where('username', isEqualTo: username)
+          .get();
+
+      setState(() {
+        _searchResults = snapshot.docs.map((doc) => doc.data()).toList();
+        print(_searchResults.length);
+      });
+
+      if (_searchResults.isEmpty) {
+        print('No matching user found.');
+      } else {
+        _searchResults.forEach((result) {
+          print('Found user: $result');
+        });
+      }
+    } catch (e) {
+      print('Error searching for user: $e');
+    }
+  }
   final CollectionReference posts =
   FirebaseFirestore.instance.collection('posts');
   Widget build(BuildContext context) {
+
     var size, height, width;
     size = MediaQuery.of(context).size;
+
+
     height = size.height;
     width = size.width;
     return Directionality(
@@ -28,11 +59,32 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
       child: Scaffold(
         backgroundColor: ColorResources.white,
         appBar: AppBar(
-          centerTitle: true,
           backgroundColor: mainColor,
-          title: const Text('SCHOOL APP', textAlign: TextAlign.center),
+          title: TextField(
+
+            controller: searchController,
+            onChanged: (value) {
+              searchUser(value);
+              if(value.length>0){
+                setState(() {
+                  _showWidget=true;
+                });
+
+              }else{
+                setState(() {
+                  _showWidget=false;
+                });
+              }
+            },
+
+            decoration: InputDecoration(
+              hintText: 'بحث',
+              border: InputBorder.none,
+            ),
+          ),
+
         ),
-        body: Column(
+        body: !_showWidget?Column(
           children: [
             Container(
               height: 20,
@@ -182,6 +234,92 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
             ),
 
           ],
+        ):    Container(
+          child: ListView.builder(
+            itemCount: _searchResults.length,
+            itemBuilder: (context, index) => Card(
+              color: Colors.greenAccent.shade400,
+              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: InkWell(
+                onTap: () {
+                 Get.to(GradeEntryScreen( _searchResults[index]['username']));
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(50.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            _searchResults[index]['username'],
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
+                            ),
+                          ),
+                          Icon(Icons.person),
+                        ],
+                      ),
+                      SizedBox(height: 8.0),
+                      Text(
+                        _searchResults[index]['studentName'],
+                        style: TextStyle(
+                          color: Colors.grey[600],
+                          fontSize: 16.0,
+                        ),
+                      ),
+                      Divider(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'الفصل: ${_searchResults[index]['section']['label']}',
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 16.0,
+                            ),
+                          ),
+                          Text(
+                            'العمر: ${_searchResults[index]['age']}',
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 16.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 8.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'اسم الأب: ${_searchResults[index]['parentName']}',
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 16.0,
+                            ),
+                          ),
+                          Text(
+                            'رقم الهاتف: ${_searchResults[index]['0921234567']}',
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 16.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
         ),
         bottomNavigationBar: const Teachersbar(),
       ),

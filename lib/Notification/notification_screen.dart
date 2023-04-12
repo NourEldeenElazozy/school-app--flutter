@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:students_mobile/UI/minu.dart';
 import 'package:students_mobile/Utiils/colors.dart';
-port 'package:students_mobile/Utiils/common_widgets.dart';
+import 'package:students_mobile/Utiils/common_widgets.dart';
 import 'package:students_mobile/shared/components/components.dart';
 import 'package:timeago/timeago.dart' as timeago;
 

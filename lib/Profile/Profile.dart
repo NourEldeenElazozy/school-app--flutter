@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:students_mobile/AuthScreens/WelcomeScreen.dart';
 import 'package:students_mobile/UI/minu.dart';
+import 'package:students_mobile/Utiils/User.dart';
 import 'package:students_mobile/Utiils/colors.dart';
 import 'package:students_mobile/Utiils/common_widgets.dart';
 import 'package:students_mobile/shared/components/components.dart';
@@ -56,44 +57,32 @@ class _ProfileState extends State<Profile> {
                             radius: 40, // Image radius
                             backgroundImage: AssetImage('assets/images/studentw.png'),
                           ),
-                          mediumText('الطالب/فرج محمد', ColorResources.grey777, 20)
+                          mediumText('الطالب/${User.name}', ColorResources.grey777, 20)
                         ],
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children:  [
-                          mediumText('age'.tr, ColorResources.grey777, 20),
-                          mediumText('11', ColorResources.grey777, 20)
-                        ],
-                      ),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children:  [
                           mediumText('class'.tr, ColorResources.grey777, 20),
-                          mediumText('رابعة إبتدائي', ColorResources.grey777, 20)
+                          mediumText(User.section, ColorResources.grey777, 20)
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children:  [
                           mediumText('city'.tr, ColorResources.grey777, 20),
-                          mediumText('طرابلس', ColorResources.grey777, 20)
+                          mediumText(User.city, ColorResources.grey777, 20)
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children:  [
                           mediumText('fatherMo'.tr, ColorResources.grey777, 20),
-                          mediumText('091-1212412', ColorResources.grey777, 20)
+                          mediumText(User.phone, ColorResources.grey777, 20)
                         ],
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children:  [
-                          mediumText('motherMo'.tr, ColorResources.grey777, 20),
-                          mediumText('091-1313254', ColorResources.grey777, 20)
-                        ],
-                      ),
+
 
                     ],
 

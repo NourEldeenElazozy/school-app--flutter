@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:students_mobile/AuthScreens/StudentRegistrationScreen.dart';
 import 'package:students_mobile/HomeScreen/HomeScreen.dart';
 import 'package:students_mobile/Utiils/User.dart';
 import 'package:students_mobile/Utiils/colors.dart';
@@ -177,6 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               }
 
 
+
                                 /*
                           LoginCubit.get(context).userLogin(
                             userName: emailController.text,
@@ -192,6 +194,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(
                         height: 10.0,
                       ),
+                      TextButton(
+                          onPressed: (){
+                            Get.to(StudentRegistrationScreen());
+                          },
+                          child: mediumText('التسجيل كـ طالب'.tr, ColorResources.blue0C1, 18)),
+
 
 
                     ],

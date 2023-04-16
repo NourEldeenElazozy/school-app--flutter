@@ -79,16 +79,26 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: mainColor,
-          title: const Text('SCHOOL APP', textAlign: TextAlign.center),
-        ),
+        
         body: Column(
           children: [
-            const SizedBox(
-              height: 10,
+            Container(
+            height: 120,
+            padding: EdgeInsets.only(top: 50, right: 20, left: 20, bottom: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                 
+                SizedBox(
+                  height: 45,
+                  width: 45,
+                  child: Image.asset("assets/images/teacher.png")),SizedBox(
+                  height: 60,
+                  width: 60,
+                  child: Image.asset("assets/images/logo.png")),
+              ],
             ),
+          ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -101,7 +111,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                mediumText('اليوم', ColorResources.redF21, 20),
+                mediumText('اليوم', ColorResources.black4A4, 20),
                 mediumText('${date.year}-${date.month}-${date.day}',
                     ColorResources.redF21, 20)
               ],

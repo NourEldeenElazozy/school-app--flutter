@@ -198,7 +198,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: double.infinity,
                         child: MaterialButton(
                           
-                              color: Colors.transparent,
                               shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(22.0), side: 
                               BorderSide(color: ColorResources.custom) ),
                               elevation: 10.0,

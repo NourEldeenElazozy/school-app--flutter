@@ -65,6 +65,8 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
       child: Scaffold(
         backgroundColor: ColorResources.white,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
+          
           actions: [
             DropdownButton<String>(
               hint: bookText(selectedLocation,ColorResources.black4A4,16),
@@ -90,7 +92,7 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
               },
             ),
           ],
-          backgroundColor: mainColor,
+          backgroundColor: Colors.white,
           title: TextField(
 
             controller: searchController,
@@ -107,10 +109,12 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
                 });
               }
             },
-
+            
             decoration: InputDecoration(
-              hintText: 'بحث',
-              border: InputBorder.none,
+              prefixIcon: Icon(Icons.search),
+              hintText: 'Search For Student',
+              border:  UnderlineInputBorder(
+                           borderRadius: BorderRadius.all(Radius.circular(10.0))),
             ),
           ),
 

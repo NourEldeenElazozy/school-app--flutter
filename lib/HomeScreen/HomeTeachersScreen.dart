@@ -28,7 +28,7 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
       print(_searchResults.length);
       var snapshot = await FirebaseFirestore.instance
           .collection('students')
-          .where('username', isEqualTo: username).where('section.label', isEqualTo: selectedLocation)
+          .where('studentName', isEqualTo: username).where('section.label', isEqualTo: selectedLocation)
           .get();
 
       setState(() {
@@ -66,7 +66,6 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
         backgroundColor: ColorResources.white,
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          
           actions: [
             DropdownButton<String>(
               hint: bookText(selectedLocation,ColorResources.black4A4,16),
@@ -341,7 +340,7 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
                             ),
                           ),
                           Text(
-                            'رقم الهاتف: ${_searchResults[index]['0921234567']}',
+                            'رقم الهاتف: ${_searchResults[index]['phone']}',
                             style: TextStyle(
                               color: Colors.grey[600],
                               fontSize: 16.0,

@@ -49,7 +49,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                 for (var result in value.docs) {
 
               FirebaseFirestore.instance.collection('Attendance').add({
-                'absence': 0,
+                'absence': false,
                 'ddate':'${date.year}-${date.month}-${date.day}',
                 'section': result['section.label'],
                 'student_name': result['studentName'],

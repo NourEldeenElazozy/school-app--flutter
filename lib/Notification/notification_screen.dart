@@ -24,6 +24,7 @@ class NotificationScreen extends StatelessWidget {
             child: StreamBuilder(
               stream: Notices.snapshots(), //build connection
               builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+
                 if (streamSnapshot.hasData) {
                   return ListView.builder(
                     itemCount:streamSnapshot.data!.size,  //number of rows
@@ -59,7 +60,7 @@ class NotificationScreen extends StatelessWidget {
                                       children:  [
                                        Image(image: AssetImage('assets/images/logo.png'),width: 120,height: 120,fit: BoxFit.cover),
                                         bookText(
-                                            documentSnapshot['description'], ColorResources.grey777, 25),
+                                            documentSnapshot['description '].toString(), ColorResources.grey777, 25),
 
                                       ],
                                     ),

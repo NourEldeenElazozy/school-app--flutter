@@ -42,7 +42,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 45,
                   width: 45,
-                  child: Image.asset("assets/images/studentw.png"))
+                  child: InkWell(
+                    onTap: (){
+                      Get.to(Profile());
+                    },
+                    child: Image.asset("assets/images/studentw.png")))
               ],
             ),
           ),

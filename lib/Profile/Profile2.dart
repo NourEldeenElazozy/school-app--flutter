@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:students_mobile/AuthScreens/WelcomeScreen.dart';
@@ -9,11 +10,11 @@ import 'package:students_mobile/Utiils/common_widgets.dart';
 import 'package:students_mobile/chatpage..dart';
 import 'package:students_mobile/shared/components/components.dart';
 
-class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+class TeacherProfile extends StatefulWidget {
+  const TeacherProfile({Key? key}) : super(key: key);
 
   @override
-  State<Profile> createState() => _ProfileState();
+  State<TeacherProfile> createState() => _ProfileState();
 }
 final List locale =[
   {'name':'ENGLISH','locale': Locale('en','US')},
@@ -23,7 +24,9 @@ updateLanguage(Locale locale){
   Get.back();
   Get.updateLocale(locale);
 }
-class _ProfileState extends State<Profile> {
+class _ProfileState extends State<TeacherProfile> { 
+   CollectionReference posts =
+      FirebaseFirestore.instance.collection('posts');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,31 +60,31 @@ class _ProfileState extends State<Profile> {
                         children:  [
                           CircleAvatar(
                             radius: 40, // Image radius
-                            backgroundImage: AssetImage('assets/images/studentw.png'),
+                            backgroundImage: AssetImage('assets/images/teacher.png'),
                           ),
-                          mediumText('الطالب/${User.name}', ColorResources.grey777, 20)
+                          mediumText('المعلم/${Teachers.name}', ColorResources.grey777, 20)
                         ],
                       ),
 
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children:  [
-                          mediumText('class'.tr, ColorResources.grey777, 20),
-                          mediumText(User.section, ColorResources.grey777, 20)
+                          mediumText('Phone'.tr, ColorResources.grey777, 20),
+                          mediumText(Teachers.phone, ColorResources.grey777, 20)
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children:  [
                           mediumText('city'.tr, ColorResources.grey777, 20),
-                          mediumText(User.city, ColorResources.grey777, 20)
+                          mediumText(Teachers.city, ColorResources.grey777, 20)
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children:  [
-                          mediumText('fatherMo'.tr, ColorResources.grey777, 20),
-                          mediumText(User.phone, ColorResources.grey777, 20)
+                          mediumText('Classes'.tr, ColorResources.grey777, 20),
+                          mediumText(Teachers.phone, ColorResources.grey777, 20)
                         ],
                       ),
 
@@ -96,34 +99,36 @@ class _ProfileState extends State<Profile> {
 
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
 
+              
                 Container(
                   width: double.infinity,
-                  child: ElevatedButton(onPressed: (){
-                    Get.to(chatpage(email: User.name));
-                  }, child: Text('Contact Head Office'.tr)),
+                
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(onPressed: (){
+                        buildLanguageDialog(context);
+                      }, child: Text('changelang'.tr), style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+                        
+                      ),),
+                    ],
+                  ),
                 ),
-                Container(
-                  width: double.infinity,
-                  child: ElevatedButton(onPressed: (){
-                    buildLanguageDialog(context);
-                  }, child: Text('Change Language'.tr)),
-                ),
-                Container(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                      ),
+                ElevatedButton(
+                    style: ButtonStyle(
+                      
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                    ),
 
-                      onPressed: (){
-                        Get.to(WelcomeScreen());
-                      }, child: Text('Sign out'.tr)),
-                ),
+                    onPressed: (){
+                      Get.to(WelcomeScreen());
+                    }, child: Text('LogOut'.tr)),
               ],
             ),
           )

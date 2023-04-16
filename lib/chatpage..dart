@@ -96,7 +96,7 @@ print( User.ticket);
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        appBar: AppBar(backgroundColor: Colors.deepOrange,title:
+        appBar: AppBar(backgroundColor: Colors.green,title:
           mediumText(
            'الدعم الفني',ColorResources.whiteF6F,22
         )),
@@ -128,7 +128,7 @@ print( User.ticket);
                           contentPadding: const EdgeInsets.only(
                               left: 14.0, bottom: 8.0, top: 8.0, right: 8),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: new BorderSide(color: Colors.deepOrange),
+                            borderSide: new BorderSide(color: Colors.green),
                             borderRadius: new BorderRadius.circular(10),
                           ),
                           enabledBorder: UnderlineInputBorder(
@@ -156,7 +156,7 @@ print( User.ticket);
                           message.clear();
                         }
                       },
-                      icon: Icon(Icons.send_sharp,color: Colors.deepOrange),
+                      icon: Icon(Icons.send_sharp,color: Colors.green),
                     ),
                   ],
                 ),

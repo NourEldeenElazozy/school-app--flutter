@@ -10,6 +10,8 @@ import 'package:students_mobile/Utiils/common_widgets.dart';
 import 'package:get/get.dart';
 import 'package:students_mobile/shared/components/components.dart';
 
+import '../Profile/Profile2.dart';
+
 class HomeTeachersScreen extends StatefulWidget {
   @override
   _HomeTeachersScreenState createState() => _HomeTeachersScreenState();
@@ -93,6 +95,7 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
           ],
           backgroundColor: Colors.white,
           title: TextField(
+            
 
             controller: searchController,
             onChanged: (value) {
@@ -108,12 +111,11 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
                 });
               }
             },
-            
+
             decoration: InputDecoration(
-              prefixIcon: Icon(Icons.search),
-              hintText: 'Search For Student',
-              border:  UnderlineInputBorder(
-                           borderRadius: BorderRadius.all(Radius.circular(10.0))),
+              hintText: 'البحث على طالب',
+              prefixIcon: Icon(Icons.search)
+            
             ),
           ),
 
@@ -176,73 +178,154 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
                                                   alignment: Alignment.centerLeft,
 
                                                 ),
-                                                child: Card(
-                                                  shape: const RoundedRectangleBorder(
-                                                      borderRadius: BorderRadius.all(
-                                                        Radius.circular(20.0),
-                                                      )),
-                                                  color: Colors.grey[50],
-                                                  child: Column(
-                                                    children: [
-                                                      SizedBox(
+                                                child:
+                                                 Card(
+         shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(22.0), side: 
+                              BorderSide(color: ColorResources.black4A4.withAlpha(30)) ),
+                              elevation: 10.0,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                 
+                     Row(
+                      children: <Widget>[
 
-                                                        child: Column(
+                        InkWell(
+                          onTap: (){
+                            Get.to(TeacherProfile());
+                          },
+                          child: Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: AssetImage("assets/images/teacher.png"),
+                                fit: BoxFit.cover
+                              )
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10,),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(documentSnapshot['teachers_name'], style: TextStyle(color: Colors.grey[900], fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 1),),
+                            SizedBox(height: 3,),
+                            Text(documentSnapshot['date'], style: TextStyle(fontSize: 15, color: Colors.grey),),
+                          ],
+                        )
+                      ],
+                    ),
+                  
+                  IconButton(
+                    icon: Icon(Icons.delete, size: 20, color: Colors.red[600],), 
+                    onPressed: () {
+                        setState(() {
+                                                    final collection = FirebaseFirestore.instance.collection('posts').doc(documentSnapshot.id).delete().then((value) {
+                                                      ScaffoldMessenger.of(context)
+                                                          .showSnackBar(SnackBar(content: Text('تم حذف المنشور'),backgroundColor: Colors.red,));
+                                                    },);
 
-                                                          children: [
-                                                            Padding(
-                                                              padding: const EdgeInsets.all(8.0),
-                                                              child: Row(
-                                                                children:  [
-                                                                  const CircleAvatar(
-                                                                    radius: 20, // Image radius
-                                                                    backgroundImage: AssetImage('assets/images/teacher.png'),
-                                                                  ),
-                                                                  const SizedBox(width: 10,),
-                                                                  mediumText( documentSnapshot['teachers_name'].toString(), ColorResources.grey777, 16)
+                                                  });
+                    },
+                  )
+                ],
+              ),
+              SizedBox(height: 20,),
+              Text(documentSnapshot['title'], style: TextStyle(fontSize: 15, color: Colors.grey[800], height: 1.5, letterSpacing: .7),),
+              Text(documentSnapshot['content'], style: TextStyle(fontSize: 15, color: Colors.grey[800], height: 1.5, letterSpacing: .7),),
+      
+              SizedBox(height: 20,),
+             Image.network(documentSnapshot['image']) != '' ?
+              Container(
+                height: 200,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                    image: NetworkImage(documentSnapshot['image']),
+                    fit: BoxFit.cover
+                  )
+                ),
+              ) : Container(),
+           
+             
+            ],
+          ),
+        ),
+      ),
+                                                //  Card(
+                                                //   shape: const RoundedRectangleBorder(
+                                                //       borderRadius: BorderRadius.all(
+                                                //         Radius.circular(20.0),
+                                                //       )),
+                                                //   color: Colors.grey[50],
+                                                //   child: Column(
+                                                //     children: [
+                                                //       SizedBox(
+
+                                                //         child: Column(
+
+                                                //           children: [
+                                                //             Padding(
+                                                //               padding: const EdgeInsets.all(8.0),
+                                                //               child: Row(
+                                                //                 children:  [
+                                                //                   const CircleAvatar(
+                                                //                     radius: 20, // Image radius
+                                                //                     backgroundImage: AssetImage('assets/images/teacher.png'),
+                                                //                   ),
+                                                //                   const SizedBox(width: 10,),
+                                                //                   mediumText( documentSnapshot['teachers_name'].toString(), ColorResources.grey777, 16)
 
 
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding: const EdgeInsets.all(8.0),
-                                                              child: Row(
-                                                                children:   [
-                                                                  SizedBox(
-                                                                      width: 350,
-                                                                      child: Text(documentSnapshot['content'].toString(),style: TextStyle(color: defaultColor,fontSize: 15,),maxLines: 5)),
+                                                //                 ],
+                                                //               ),
+                                                //             ),
+                                                //             Padding(
+                                                //               padding: const EdgeInsets.all(8.0),
+                                                //               child: Row(
+                                                //                 children:   [
+                                                //                   SizedBox(
+                                                //                       width: 350,
+                                                //                       child: Text(documentSnapshot['content'].toString(),style: TextStyle(color: defaultColor,fontSize: 15,),maxLines: 5)),
 
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding: const EdgeInsets.all(8.0),
-                                                              child: Row(
-                                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                                children:   [
-                                                                  SizedBox(
-                                                                    width: 250,
-                                                                    height: 250,
-                                                                    child: FittedBox(
-                                                                      fit: BoxFit.fill,
-                                                                      child: Image.network(documentSnapshot['image']),
-                                                                    ),
-                                                                  ),
+                                                //                 ],
+                                                //               ),
+                                                //             ),
+                                                //             Padding(
+                                                //               padding: const EdgeInsets.all(8.0),
+                                                //               child: Row(
+                                                //                 mainAxisAlignment: MainAxisAlignment.center,
+                                                //                 children:   [
+                                                //                   SizedBox(
+                                                //                     width: 250,
+                                                //                     height: 250,
+                                                //                     child: FittedBox(
+                                                //                       fit: BoxFit.fill,
+                                                //                       child: Image.network(documentSnapshot['image']),
+                                                //                     ),
+                                                //                   ),
 
 
-                                                                ],
-                                                              ),
-                                                            ),
+                                                //                 ],
+                                                //               ),
+                                                //             ),
 
-                                                          ],
-                                                        ),
+                                                //           ],
+                                                //         ),
 
-                                                      ),
+                                                //       ),
 
-                                                    ],
-                                                  ),
+                                                //     ],
+                                                //   ),
 
-                                                ),
+                                                // ),
 
                                               ),
                                             ),
@@ -272,11 +355,14 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
           child: ListView.builder(
             itemCount: _searchResults.length,
             itemBuilder: (context, index) => Card(
-              color: Colors.greenAccent.shade400,
+              
               elevation: 4,
               shape: RoundedRectangleBorder(
+                side: BorderSide(color: Colors.green),
                 borderRadius: BorderRadius.circular(10),
+                
               ),
+              
               margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: InkWell(
                 onTap: () {
@@ -297,7 +383,10 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
                               fontSize: 18.0,
                             ),
                           ),
-                          Icon(Icons.person),
+                          SizedBox(
+                            height: 60,
+                            width: 60,
+                            child: Image.asset("assets/images/studentw.png")),
                         ],
                       ),
                       SizedBox(height: 8.0),
@@ -359,6 +448,4 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
       ),
     );
   }}
-
-
 

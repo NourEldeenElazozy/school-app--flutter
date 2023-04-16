@@ -82,8 +82,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           },
                           child: mediumText('LogType'.tr, ColorResources.blue0C1, 18)),
                       Divider(height: Get.height/15, color: Colors.transparent,),
-                    mediumText('AppV'.tr, ColorResources.greyA0A, 14)
-
+                    
                     ],
                   )
 

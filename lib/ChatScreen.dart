@@ -61,7 +61,7 @@ class _messagesState extends State<messages> {
             );
           }
           if (snapshot.hasError) {
-            return Text("حدث خطاء ما");
+            return Text("Text is refreshing");
           }
 
 
@@ -99,7 +99,7 @@ class _messagesState extends State<messages> {
 
 
                           title: mediumText(
-                            qs['sender'],Colors.deepOrange,18
+                            qs['sender'],Colors.green,18
 
                           ),
                           subtitle: Row(

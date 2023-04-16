@@ -5,8 +5,10 @@ import 'package:students_mobile/UI/minu.dart';
 import 'package:students_mobile/Utiils/User.dart';
 import 'package:students_mobile/Utiils/colors.dart';
 import 'package:students_mobile/Utiils/common_widgets.dart';
-
+import 'package:get/get.dart';
 import 'package:students_mobile/shared/components/components.dart';
+
+import '../UI/calendar.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -20,17 +22,30 @@ class _HomeScreenState extends State<HomeScreen> {
     size = MediaQuery.of(context).size;
     height = size.height;
     width = size.width;
-    return Scaffold(
+    return
+     Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        backgroundColor: mainColor,
-        title: const Text('SCHOOL APP', textAlign: TextAlign.center),
-      ),
+    
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
+ Container(
+            height: 120,
+            padding: EdgeInsets.only(top: 50, right: 20, left: 20, bottom: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                 SizedBox(
+                  height: 60,
+                  width: 60,
+                  child: Image.asset("assets/images/logo.png")),
+                SizedBox(
+                  height: 45,
+                  width: 45,
+                  child: Image.asset("assets/images/studentw.png"))
+              ],
+            ),
+          ),
           Flexible(child:     StreamBuilder(
             stream:
             FirebaseFirestore.instance.
@@ -54,118 +69,202 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, index) {
                     final DocumentSnapshot documentSnapshot =
                     streamSnapshot.data!.docs[index];
-                    return   Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                    return   Expanded(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                                       Container(
+      margin: EdgeInsets.only(bottom: 20),
+      child: Card(
+         shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(22.0), side: 
+                              BorderSide(color: ColorResources.black4A4.withAlpha(30)) ),
+                              elevation: 10.0,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                 
+                     Row(
+                      children: <Widget>[
                         Container(
-                          padding:const EdgeInsets.only(top: 10),
-                          child: Column(
-                            children: [
-                              Column(
-                                children: [
-                                  Row(
-
-                                    children: [
-
-                                      InkWell(
-                                        child: Container(
-                                          width: 380,
-                                          child: Card(
-                                            shape: const RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.all(
-                                                  Radius.circular(20.0),
-                                                )),
-                                            color: Colors.grey[50],
-                                            child: Column(
-                                              children: [
-                                                SizedBox(
-                                                  width:
-                                                  MediaQuery.of(context).size.width * 12,
-                                                  height:
-                                                  MediaQuery.of(context).size.height * 0.40,
-                                                  child: Column(
-
-                                                    children: [
-                                                      Padding(
-                                                        padding: const EdgeInsets.all(8.0),
-                                                        child: Row(
-                                                          children:  [
-                                                            const CircleAvatar(
-                                                              radius: 20, // Image radius
-                                                              backgroundImage: AssetImage('assets/images/teacher.png'),
-                                                            ),
-                                                            const SizedBox(width: 10,),
-                                                            mediumText( documentSnapshot['teachers_name'], ColorResources.grey777, 16),
-
-
-
-
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding: const EdgeInsets.all(8.0),
-                                                        child: Row(
-                                                          children:   [
-
-                                                            SizedBox(
-                                                                width: 350,
-                                                                child: Text(documentSnapshot['title'],style: TextStyle(color: defaultColor,fontSize: 15,),maxLines: 5)),
-
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding: const EdgeInsets.all(8.0),
-                                                        child: Row(
-                                                          children:   [
-
-                                                            SizedBox(
-                                                                width: 350,
-                                                                child: Text(documentSnapshot['content'],style: TextStyle(color: defaultColor,fontSize: 15,),maxLines: 5)),
-
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding: const EdgeInsets.all(8.0),
-                                                        child: Row(
-                                                          mainAxisAlignment: MainAxisAlignment.center,
-                                                          children:   [
-                                                            SizedBox(
-                                                              width: 100,
-                                                              height: 100,
-                                                              child: FittedBox(
-                                                                fit: BoxFit.fill,
-                                                                child: Image.network(documentSnapshot['image']),
-                                                              ),
-                                                            ),
-
-
-                                                          ],
-                                                        ),
-                                                      ),
-
-                                                    ],
-                                                  ),
-
-                                                ),
-
-                                              ],
-                                            ),
-
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: AssetImage("assets/images/teacher.png"),
+                              fit: BoxFit.cover
+                            )
                           ),
                         ),
+                        SizedBox(width: 10,),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(documentSnapshot['teachers_name'], style: TextStyle(color: Colors.grey[900], fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 1),),
+                            SizedBox(height: 3,),
+                            Text(documentSnapshot['date'], style: TextStyle(fontSize: 15, color: Colors.grey),),
+                          ],
+                        )
                       ],
+                    ),
+                  
+                  IconButton(
+                    icon: Icon(Icons.more_horiz, size: 30, color: Colors.grey[600],), 
+                    onPressed: () {},
+                  )
+                ],
+              ),
+              SizedBox(height: 20,),
+              Text(documentSnapshot['title'], style: TextStyle(fontSize: 15, color: Colors.grey[800], height: 1.5, letterSpacing: .7),),
+              Text(documentSnapshot['content'], style: TextStyle(fontSize: 15, color: Colors.grey[800], height: 1.5, letterSpacing: .7),),
+      
+              SizedBox(height: 20,),
+             Image.network(documentSnapshot['image']) != '' ?
+              Container(
+                height: 200,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                    image: NetworkImage(documentSnapshot['image']),
+                    fit: BoxFit.cover
+                  )
+                ),
+              ) : Container(),
+           
+             
+            ],
+          ),
+        ),
+      ),
+    )
+                  ]
+                )
+              )
+            )
                     );
+                    
+                    
+                    //  Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     Container(
+                    //       padding:const EdgeInsets.only(top: 10),
+                    //       child: Column(
+                    //         children: [
+                    //           Column(
+                    //             children: [
+                    //               Row(
+
+                    //                 children: [
+
+                    //                   InkWell(
+                    //                     child: Container(
+                    //                       width: 380,
+                    //                       child: Card(
+                    //                         shape: const RoundedRectangleBorder(
+                    //                             borderRadius: BorderRadius.all(
+                    //                               Radius.circular(20.0),
+                    //                             )),
+                    //                         color: Colors.grey[50],
+                    //                         child: Column(
+                    //                           children: [
+                    //                             SizedBox(
+                    //                               width:
+                    //                               MediaQuery.of(context).size.width * 12,
+                    //                               height:
+                    //                               MediaQuery.of(context).size.height * 0.40,
+                    //                               child: Column(
+
+                    //                                 children: [
+                    //                                   Padding(
+                    //                                     padding: const EdgeInsets.all(8.0),
+                    //                                     child: Row(
+                    //                                       children:  [
+                    //                                         const CircleAvatar(
+                    //                                           radius: 20, // Image radius
+                    //                                           backgroundImage: AssetImage('assets/images/teacher.png'),
+                    //                                         ),
+                    //                                         const SizedBox(width: 10,),
+                    //                                         mediumText( documentSnapshot['teachers_name'], ColorResources.grey777, 16),
+
+
+
+
+                    //                                       ],
+                    //                                     ),
+                    //                                   ),
+                    //                                   Padding(
+                    //                                     padding: const EdgeInsets.all(8.0),
+                    //                                     child: Row(
+                    //                                       children:   [
+
+                    //                                         SizedBox(
+                    //                                             width: 350,
+                    //                                             child: Text(documentSnapshot['title'],style: TextStyle(color: defaultColor,fontSize: 15,),maxLines: 5)),
+
+                    //                                       ],
+                    //                                     ),
+                    //                                   ),
+                    //                                   Padding(
+                    //                                     padding: const EdgeInsets.all(8.0),
+                    //                                     child: Row(
+                    //                                       children:   [
+
+                    //                                         SizedBox(
+                    //                                             width: 350,
+                    //                                             child: Text(documentSnapshot['content'],style: TextStyle(color: defaultColor,fontSize: 15,),maxLines: 5)),
+
+                    //                                       ],
+                    //                                     ),
+                    //                                   ),
+                    //                                   Padding(
+                    //                                     padding: const EdgeInsets.all(8.0),
+                    //                                     child: Row(
+                    //                                       mainAxisAlignment: MainAxisAlignment.center,
+                    //                                       children:   [
+                    //                                         SizedBox(
+                    //                                           width: 100,
+                    //                                           height: 100,
+                    //                                           child: FittedBox(
+                    //                                             fit: BoxFit.fill,
+                    //                                             child: Image.network(documentSnapshot['image']),
+                    //                                           ),
+                    //                                         ),
+
+
+                    //                                       ],
+                    //                                     ),
+                    //                                   ),
+
+                    //                                 ],
+                    //                               ),
+
+                    //                             ),
+
+                    //                           ],
+                    //                         ),
+
+                    //                       ),
+                    //                     ),
+                    //                   ),
+                    //                 ],
+                    //               ),
+                    //             ],
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ],
+                    // );
                   },
                 );
               }
@@ -186,7 +285,117 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: const bar(),
     );
-  }}
+  }
+   Widget makeStory({storyImage, userImage, userName}) {
+    return AspectRatio(
+      aspectRatio: 1.6 / 2,
+      child: Container(
+        margin: EdgeInsets.only(right: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          image: DecorationImage(
+            image: AssetImage(storyImage),
+            fit: BoxFit.cover
+          ),
+        ),
+        child: Container(
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            gradient: LinearGradient(
+              begin: Alignment.bottomRight,
+              colors: [
+                Colors.black.withOpacity(.9),
+                Colors.black.withOpacity(.1),
+              ]
+            )
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.white, width: 2),
+                  image: DecorationImage(
+                    image: AssetImage(userImage),
+                    fit: BoxFit.cover
+                  )
+                ),
+              ),
+              Text(userName, style: TextStyle(color: Colors.white),)
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget makeFeed({userName, userImage, feedTime, feedText, feedImage}) {
+    return 
+    Container(
+      margin: EdgeInsets.only(bottom: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage(userImage),
+                        fit: BoxFit.cover
+                      )
+                    ),
+                  ),
+                  SizedBox(width: 10,),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(userName, style: TextStyle(color: Colors.grey[900], fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 1),),
+                      SizedBox(height: 3,),
+                      Text(feedTime, style: TextStyle(fontSize: 15, color: Colors.grey),),
+                    ],
+                  )
+                ],
+              ),
+              IconButton(
+                icon: Icon(Icons.more_horiz, size: 30, color: Colors.grey[600],), 
+                onPressed: () {},
+              )
+            ],
+          ),
+          SizedBox(height: 20,),
+          Text(feedText, style: TextStyle(fontSize: 15, color: Colors.grey[800], height: 1.5, letterSpacing: .7),),
+          SizedBox(height: 20,),
+          feedImage != '' ?
+          Container(
+            height: 200,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              image: DecorationImage(
+                image: AssetImage(feedImage),
+                fit: BoxFit.cover
+              )
+            ),
+          ) : Container(),
+       
+         
+        ],
+      ),
+    );
+  }
+
+  }
 
 
 

@@ -9,6 +9,7 @@ class User {
   static var documentID;
   static var ticket;
   static var studentName;
+  
 }
 class Teachers {
 

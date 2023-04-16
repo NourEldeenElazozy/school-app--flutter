@@ -84,7 +84,7 @@ class _LoginRegisteredScreenState extends State<LoginRegisteredScreen> {
                       ),
 
                       const Text(
-                        'سجل دخولك كي تتمكن من استخدام التطبيق',
+                        'Sign in As an Attendence Register to Manage Students',
                       ),
                       const SizedBox(
                         height: 20.0,
@@ -107,7 +107,8 @@ class _LoginRegisteredScreenState extends State<LoginRegisteredScreen> {
                             Icons.supervised_user_circle_outlined,
                           ),
                           labelText: "اسم المستخدم ",
-                          border: OutlineInputBorder(),
+                          border:  OutlineInputBorder(
+                           borderRadius: BorderRadius.all(Radius.circular(20.0)))
                         ),
                       ),
                       const SizedBox(
@@ -138,7 +139,8 @@ class _LoginRegisteredScreenState extends State<LoginRegisteredScreen> {
 
                           ),
                           labelText: 'كلمة المرور',
-                          border: const OutlineInputBorder(),
+                          border:  OutlineInputBorder(
+                           borderRadius: BorderRadius.all(Radius.circular(20.0)))
                         ),
                       ),
                       const SizedBox(
@@ -148,8 +150,9 @@ class _LoginRegisteredScreenState extends State<LoginRegisteredScreen> {
                         height: 40.0,
                         width: double.infinity,
                         child: MaterialButton(
-                            color: secondColor,
-
+                             color: ColorResources.custom,
+          shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(22.0) ),
+        elevation: 10.0,
 
 
                             onPressed: () async {
@@ -186,7 +189,10 @@ class _LoginRegisteredScreenState extends State<LoginRegisteredScreen> {
 
                            */
                               }
-                            },child: const Text('دخول')
+                            },child: const Text('دخول',  style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16
+                            ),)
                         ),
                       ),
                       const SizedBox(

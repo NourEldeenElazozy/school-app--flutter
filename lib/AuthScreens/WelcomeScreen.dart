@@ -33,7 +33,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
     return Directionality(
       textDirection: TextDirection.rtl,
-      child: Scaffold(
+      child:
+      
+       Scaffold(
           backgroundColor: Colors.white,
 
           body:SingleChildScrollView(
@@ -67,7 +69,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           Get.to(LoginScreen());
                         },
                         child: Padding(padding: EdgeInsets.all(20),
-                          child:commonButton(null , 'Student'.tr, ColorResources.custom, ColorResources.whiteF6F) ,
+                          child:commonButton(null , 'Parent'.tr, ColorResources.custom, ColorResources.whiteF6F) ,
 
                         ),
                       ),
@@ -79,7 +81,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             Get.to(LoginRegisteredScreen());
                           },
                           child: mediumText('LogType'.tr, ColorResources.blue0C1, 18)),
-                      Divider(height: Get.height/15),
+                      Divider(height: Get.height/15, color: Colors.transparent,),
                     mediumText('AppV'.tr, ColorResources.greyA0A, 14)
 
                     ],

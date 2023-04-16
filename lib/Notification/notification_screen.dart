@@ -88,8 +88,8 @@ class NotificationScreen extends StatelessWidget {
                   );
                 }
 
-                return const Center(
-                  child: CircularProgressIndicator(),
+                return  Center(
+                  child: Image.asset("assets/images/empty.png"),
                 );
               },
             ),

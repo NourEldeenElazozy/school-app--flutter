@@ -24,6 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
         .collection('students')
         .where("username", isEqualTo: userName.toString())
         .where("password", isEqualTo: pass.toString())
+        .where("status", isEqualTo: true)
         .get()
         .then((event) {
       if (event.docs.isNotEmpty) {
@@ -107,8 +108,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           prefixIcon: Icon(
                             Icons.supervised_user_circle_outlined,
                           ),
-                          labelText: "UserName".tr,
-                          border: OutlineInputBorder(),
+                          labelText: "Username".tr,
+                          border: OutlineInputBorder(
+                           borderRadius: BorderRadius.all(Radius.circular(20.0)))
+                          ,
                         ),
                       ),
                       const SizedBox(
@@ -138,8 +141,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
 
                           ),
-                          labelText: 'PassWord'.tr,
-                          border: const OutlineInputBorder(),
+                          labelText: 'Password'.tr,
+                          border: OutlineInputBorder(
+                           borderRadius: BorderRadius.all(Radius.circular(20.0))),
                         ),
                       ),
                       const SizedBox(
@@ -149,8 +153,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 40.0,
                         width: double.infinity,
                         child: MaterialButton(
-                            color: secondColor,
-
+                            color: ColorResources.custom,
+          shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(22.0) ),
+        elevation: 10.0,
+        
 
 
                             onPressed: () async {
@@ -176,30 +182,37 @@ class _LoginScreenState extends State<LoginScreen> {
                               } else if (test == 'yes data') {
                              Get.off(HomeScreen());
                               }
-
-
-
-                                /*
-                          LoginCubit.get(context).userLogin(
-                            userName: emailController.text,
-                            password: passwordController.text,
-                          );
-
-
-                           */
                               }
-                            },child:  Text('LogIn'.tr)
+                            },child:  Text('Sign in'.tr, style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16
+                            ),
+                            )
                         ),
                       ),
                       const SizedBox(
                         height: 10.0,
                       ),
-                      TextButton(
-                          onPressed: (){
-                            Get.to(StudentRegistrationScreen());
-                          },
-                          child: mediumText('التسجيل كـ طالب'.tr, ColorResources.blue0C1, 18)),
+                      Container(
+                        height: 40,
+                        width: double.infinity,
+                        child: MaterialButton(
+                          
+                              color: Colors.transparent,
+                              shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(22.0), side: 
+                              BorderSide(color: ColorResources.custom) ),
+                              elevation: 10.0,
+        
 
+
+                              onPressed: () async {
+                              Get.to(StudentRegistrationScreen());
+
+                              },child:  mediumText('Create An Account'.tr, ColorResources.custom, 18)
+                          ),
+                      ),
+                      
+                     
 
 
                     ],

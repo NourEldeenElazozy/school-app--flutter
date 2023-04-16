@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:students_mobile/Utiils/colors.dart';
 import 'package:students_mobile/Utiils/text_font_family.dart';
 
 class AppStyles {
@@ -44,9 +45,10 @@ class _StudentRegistrationScreenState extends State<StudentRegistrationScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Student Registration'),
+        backgroundColor: ColorResources.custom,
       ),
       body: Directionality(
-        textDirection: TextDirection.rtl,
+        textDirection: TextDirection.ltr,
         child: Form(
           key: _formKey,
           child: SingleChildScrollView(
@@ -57,10 +59,10 @@ class _StudentRegistrationScreenState extends State<StudentRegistrationScreen> {
                 TextFormField(
                   style: AppStyles.textFieldStyle,
                   controller: _nameController,
-                  decoration: InputDecoration(labelText: 'اسم الطالب'),
+                  decoration: InputDecoration(labelText: 'Full Name'),
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'يرجي إدخال اسم الطالب';
+                      return 'Please Enter Student Full Name';
                     }
                     return null;
                   },
@@ -68,11 +70,11 @@ class _StudentRegistrationScreenState extends State<StudentRegistrationScreen> {
                 TextFormField(
                   style: AppStyles.textFieldStyle,
                   controller: _ageController,
-                  decoration: InputDecoration(labelText: 'العمر'),
+                  decoration: InputDecoration(labelText: 'Age'),
                   keyboardType: TextInputType.number,
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'يرجي إدخال العمر ';
+                      return 'Please Enter your Age';
                     }
                     return null;
                   },
@@ -80,11 +82,11 @@ class _StudentRegistrationScreenState extends State<StudentRegistrationScreen> {
                 TextFormField(
                   style: AppStyles.textFieldStyle,
                   controller: _phoneController,
-                  decoration: InputDecoration(labelText: 'الهاتف'),
+                  decoration: InputDecoration(labelText: 'Parent Phone Number'),
                   keyboardType: TextInputType.phone,
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'يرجي إدخال رقم هاتف ';
+                      return 'Please Enter A Valid Phone Number';
                     }
                     return null;
                   },
@@ -92,10 +94,10 @@ class _StudentRegistrationScreenState extends State<StudentRegistrationScreen> {
                 TextFormField(
                   style: AppStyles.textFieldStyle,
                   controller: _cityController,
-                  decoration: InputDecoration(labelText: 'المدينة'),
+                  decoration: InputDecoration(labelText: 'City'),
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'يرجي إدخال مدينة الطالب';
+                      return ('Please Enter ' + _nameController.toString() + " current city");
                     }
                     return null;
                   },
@@ -103,10 +105,10 @@ class _StudentRegistrationScreenState extends State<StudentRegistrationScreen> {
                 TextFormField(
                   style: AppStyles.textFieldStyle,
                   controller: _parentController,
-                  decoration: InputDecoration(labelText: "اسم ولي امر"),
+                  decoration: InputDecoration(labelText: "Parent Full Name"),
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'يرجي إدخال اسم ولي امر الطالب';
+                      return 'Please Enter Parent Full Name';
                     }
                     return null;
                   },
@@ -117,8 +119,8 @@ class _StudentRegistrationScreenState extends State<StudentRegistrationScreen> {
                   decoration: InputDecoration(labelText: 'Password'),
                   obscureText: true,
                   validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'يرجي إدخال الرقم السري';
+                    if (value!.isEmpty || value.length < 6) {
+                      return 'Please Enter a valid password';
                     }
                     return null;
                   },
@@ -126,21 +128,22 @@ class _StudentRegistrationScreenState extends State<StudentRegistrationScreen> {
                 TextFormField(
                   style: AppStyles.textFieldStyle,
                   controller: _usernameController,
-                  decoration: InputDecoration(labelText: "اسم المستخدم"),
+                  decoration: InputDecoration(labelText: "App Username"),
                   validator: (value) {
                     if (value!.isEmpty || value.length < 5) {
-                      return "يرجي إدخال اسم المستخدم بشكل صحيح";
-                    }
+                      
+                      return "Please Enter a valid username";
+                    } // add validation for username here 
                     return null;
                   },
                 ),
                 TextFormField(
                   style: AppStyles.textFieldStyle,
                   controller: _idController,
-                  decoration: InputDecoration(labelText: "الرقم الوطني"),
+                  decoration: InputDecoration(labelText: "Social Service Number"),
                   validator: (value) {
                     if (value!.isEmpty || value.length < 12) {
-                      return "يرجي إدخال الرقم الوطني بشكل صحيح";
+                      return "Please Enter A valid Social Service Number";
                     }
                     return null;
                   },
@@ -211,10 +214,16 @@ class _StudentRegistrationScreenState extends State<StudentRegistrationScreen> {
                   ),
                 ),
                 SizedBox(height: 16.0),
-                ElevatedButton(
+                MaterialButton(
+                shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(22.0), side: 
+                              BorderSide(color: ColorResources.custom) ),
+                              elevation: 10.0,
                   child: Text(
-                    'متابعه',
-                    style: AppStyles.textFieldStyle,
+                    'Submit',
+                    style: TextStyle(
+                      color: ColorResources.custom,
+                      fontSize: 16
+                    ),
                   ),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {

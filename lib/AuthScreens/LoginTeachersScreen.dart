@@ -85,7 +85,7 @@ class _LoginTeachersScreenState extends State<LoginTeachersScreen> {
                       ),
 
                       const Text(
-                        'سجل دخولك كي تتمكن من استخدام التطبيق',
+                        'Sign in As a teacher to manage your students'
                       ),
                       const SizedBox(
                         height: 20.0,
@@ -107,8 +107,9 @@ class _LoginTeachersScreenState extends State<LoginTeachersScreen> {
                           prefixIcon: Icon(
                             Icons.supervised_user_circle_outlined,
                           ),
-                          labelText: "اسم المستخدم ",
-                          border: OutlineInputBorder(),
+                          labelText: "Username",
+                          border: OutlineInputBorder(
+                           borderRadius: BorderRadius.all(Radius.circular(20.0))),
                         ),
                       ),
                       const SizedBox(
@@ -138,8 +139,9 @@ class _LoginTeachersScreenState extends State<LoginTeachersScreen> {
                             },
 
                           ),
-                          labelText: 'كلمة المرور',
-                          border: const OutlineInputBorder(),
+                          labelText: 'Password',
+                          border: OutlineInputBorder(
+                           borderRadius: BorderRadius.all(Radius.circular(20.0))),
                         ),
                       ),
                       const SizedBox(
@@ -149,7 +151,10 @@ class _LoginTeachersScreenState extends State<LoginTeachersScreen> {
                         height: 40.0,
                         width: double.infinity,
                         child: MaterialButton(
-                            color: secondColor,
+                            color: ColorResources.custom,
+                             shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(22.0) ),
+        elevation: 18.0,
+                            
 
 
 
@@ -187,7 +192,10 @@ class _LoginTeachersScreenState extends State<LoginTeachersScreen> {
 
                            */
                               }
-                            },child: const Text('دخول')
+                            },child: const Text('Sign in', style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16
+                            ),)
                         ),
                       ),
                       const SizedBox(

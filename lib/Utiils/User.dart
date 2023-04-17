@@ -6,6 +6,9 @@ class User {
   static var city;
   static var numOfOrders;
   static var section;
+  static var fathername;
+  static var age;
+  static var idNumber;
   static var documentID;
   static var ticket;
   static var studentName;

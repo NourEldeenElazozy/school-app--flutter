@@ -8,6 +8,7 @@ import 'package:students_mobile/Utiils/colors.dart';
 import 'package:students_mobile/Utiils/common_widgets.dart';
 import 'package:students_mobile/chatpage..dart';
 import 'package:students_mobile/shared/components/components.dart';
+import 'package:students_mobile/students.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -84,6 +85,27 @@ class _ProfileState extends State<Profile> {
                           mediumText(User.phone, ColorResources.grey777, 20)
                         ],
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children:  [
+                          mediumText('father Name'.tr, ColorResources.grey777, 20),
+                          mediumText(User.fathername.toString(), ColorResources.grey777, 20)
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children:  [
+                          mediumText('idNumber'.tr, ColorResources.grey777, 20),
+                          mediumText(User.idNumber.toString(), ColorResources.grey777, 20)
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children:  [
+                          mediumText('age'.tr, ColorResources.grey777, 20),
+                          mediumText(User.age.toString(), ColorResources.grey777, 20)
+                        ],
+                      ),
 
 
                     ],
@@ -113,6 +135,7 @@ class _ProfileState extends State<Profile> {
                     buildLanguageDialog(context);
                   }, child: Text('Change Language'.tr)),
                 ),
+
                 Container(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -123,6 +146,23 @@ class _ProfileState extends State<Profile> {
                       onPressed: (){
                         Get.to(WelcomeScreen());
                       }, child: Text('Sign out'.tr)),
+                ),
+                Container(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                      ),
+
+                      onPressed: (){
+                        Get.to( StudentGradesScreen(studentName:User.name,  grades: [
+                          {'subject': 'الرياضيات', 'grade': 90,'one': 40,'two': 50,},
+                          {'subject': 'اللغة العربية', 'grade': 90,'one': 40,'two': 50,},
+                          {'subject': 'العلوم', 'grade': 80,'one': 40,'two': 40,},
+                          {'subject': 'التاريخ', 'grade': 50,'one': 40,'two': 10,},
+                          {'subject': 'الفنون','grade': 20,'one': 10,'two': 10,},
+                        ],),);
+                      }, child: Text('Dagrees'.tr)),
                 ),
               ],
             ),

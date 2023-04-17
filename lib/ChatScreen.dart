@@ -40,7 +40,7 @@ class _messagesState extends State<messages> {
 
   final Stream<QuerySnapshot> _messageStream = FirebaseFirestore.instance
       .collection('services')
-      .orderBy("date",descending: false)
+     // .orderBy("date",descending: false)
      .where("sender", whereIn: [User.name, "admin"])
       .where("ticket", isEqualTo: User.ticket)
 
@@ -72,11 +72,12 @@ class _messagesState extends State<messages> {
             primary: true,
             itemBuilder: (_, index) {
               QueryDocumentSnapshot qs = snapshot.data!.docs[index];
-
+              print('qs');
+              print(snapshot.data!.docs.length);
               return Padding(
                 padding: const EdgeInsets.only(top: 8, bottom: 8,left: 8,right: 8),
                 child: Column(
-                  crossAxisAlignment: email == qs['sender']
+                  crossAxisAlignment: email == qs['sender'].toString()
                       ? CrossAxisAlignment.start
                       : CrossAxisAlignment.end,
                   children: [

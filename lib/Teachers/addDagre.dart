@@ -1,18 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:students_mobile/shared/components/components.dart';
-class GradeEntryScreen extends StatelessWidget {
-  final TextEditingController firstGradeController = TextEditingController();
-  final TextEditingController secondGradeController = TextEditingController();
+class GradeEntryScreen extends StatefulWidget {
 
   GradeEntryScreen(@required this.searchResult,);
   final String searchResult;
 
+  @override
+  State<GradeEntryScreen> createState() => _GradeEntryScreenState();
+}
 
+class _GradeEntryScreenState extends State<GradeEntryScreen> {
+  final TextEditingController firstGradeController = TextEditingController();
 
+  final TextEditingController secondGradeController = TextEditingController();
+  String? _selectedSubject;
+  List<String> _subjects = [
+    'علوم',
+    'رياضيات',
+    'تاريخ',
+    'جغرافيا',
+    'لغة عربية',
+    'لغة إنجليزية',
+    'فيزياء',
+    'كيمياء',
+  ];
 
   @override
   Widget build(BuildContext context) {
+
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -21,6 +37,9 @@ class GradeEntryScreen extends StatelessWidget {
         ),
         body: Column(
           children: [
+
+
+
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
@@ -35,6 +54,26 @@ class GradeEntryScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      Container(
+                        child:  DropdownButtonFormField<String>(
+                          decoration: InputDecoration(
+                            labelText: 'المادة',
+                            border: OutlineInputBorder(),
+                          ),
+                          value: _selectedSubject,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              _selectedSubject = newValue;
+                            });
+                          },
+                          items: _subjects.map((String subject) {
+                            return DropdownMenuItem<String>(
+                              value: subject,
+                              child: Text(subject),
+                            );
+                          }).toList(),
+                        ),),
+                      SizedBox(height: 10),
                       TextFormField(
                         decoration: const InputDecoration(
                           labelText: 'اعمال السنه',
@@ -95,7 +134,7 @@ class GradeEntryScreen extends StatelessWidget {
 
                   if (firstGrade != null && secondGrade != null) {
                     FirebaseFirestore.instance.collection('Dagres').add({
-                      'student': searchResult,
+                      'student': widget.searchResult,
                       'first_grade': firstGrade,
                       'second_grade': secondGrade,
                       'tottal': double.parse(firstGradeController.text)+double.parse(secondGradeController.text),

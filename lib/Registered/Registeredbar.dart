@@ -22,6 +22,9 @@ class Registeredbar extends StatefulWidget {
 class _RegisteredbarState extends State<Registeredbar> {
   @override
   Widget build(BuildContext context) {
+    if(currentIndex>1){
+      currentIndex=0;
+    }
     return Container(
       child: BottomNavigationBar(
         fixedColor:  mainColor,

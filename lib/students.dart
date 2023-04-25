@@ -15,7 +15,7 @@ class StudentGradesScreen extends StatelessWidget {
       total += int.parse(grade['grade'].toString());
     }
 
-    return  Directionality(
+    return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
@@ -30,63 +30,69 @@ class StudentGradesScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
 
-              Text(
-                'المواد:',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
               SizedBox(height: 8),
               Expanded(
                 child: StreamBuilder(
-                  stream: FirebaseFirestore.instance.collection('Dagres').
-
-                  where('student', isEqualTo: User.studentName) .
-
-                  snapshots(),
-              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-    if (!snapshot.hasData) {
-    return Center(child: CircularProgressIndicator());
-    } else {
-                    return  ListView.builder(
-                      itemCount: snapshot.data!.docs.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        DocumentSnapshot document = snapshot.data!.docs[index];
-
-
-                        return Card(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 4),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
-                                  document['subject'].toString(),
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                                Text(
-                                  ' الجزئي ${  document['first_grade'].toString()} ',
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                                Text(
-                                  ' النهائي ${  document['second_grade'].toString()} ',
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                                Text(
-                                  ' الاجمالي ${  document['tottal'].toString()} ',
-                                  style: TextStyle(fontSize: 16),
-                                ),
-
-                              ],
-                            ),
+                    stream: FirebaseFirestore.instance
+                        .collection('Dagres')
+                        .where('student', isEqualTo: User.studentName)
+                        .snapshots(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.data!.docs.isEmpty) {
+                       return const Center(
+                         child: Text(
+                            'لايوجد بيانات ',
+                            style: TextStyle(fontSize: 22),
                           ),
-                        );
-                      },
-                    );
-              }}
+                       );
+                      }else
+                        {
+                          if (!snapshot.hasData) {
+                            return Center(child: CircularProgressIndicator());
+                          } else {
 
-                ),
+                            return ListView.builder(
+                              itemCount: snapshot.data!.docs.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                DocumentSnapshot document =
+                                snapshot.data!.docs[index];
+
+                                return Card(
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 4),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          document['subject'].toString(),
+                                          style: TextStyle(fontSize: 16),
+                                        ),
+                                        Text(
+                                          ' الجزئي ${document['first_grade'].toString()} ',
+                                          style: TextStyle(fontSize: 16),
+                                        ),
+                                        Text(
+                                          ' النهائي ${document['second_grade'].toString()} ',
+                                          style: TextStyle(fontSize: 16),
+                                        ),
+                                        Text(
+                                          ' الاجمالي ${document['tottal'].toString()} ',
+                                          style: TextStyle(fontSize: 16),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          }
+                        }
+
+                    }),
               ),
               SizedBox(height: 8),
-
             ],
           ),
         ),

@@ -49,10 +49,10 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                 for (var result in value.docs) {
 
               FirebaseFirestore.instance.collection('Attendance').add({
-                'absence': false,
+                'absence': true,
                 'ddate':'${date.year}-${date.month}-${date.day}',
                 'section': result['section.label'],
-                'student_name': result['studentName'],
+                'student_name': result['username'],
               })
               //result.data(),
 
@@ -184,7 +184,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                             streamSnapshot.data!.docs[index];
                         return Container(
                           width: 450,
-                          height: 80,
+                          height: 100,
                           margin: EdgeInsets.all(12.0),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30.0),
@@ -213,10 +213,20 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                                         value: documentSnapshot['absence'],
                                         onChanged: (value) {
                                           setState(() {
+                                            print(value);
 
+                                            if (value==false){
+                                              FirebaseFirestore.instance.collection('notices').add({
+                                                'date': DateTime.now(),
+                                                'title': 'غياب ',
+                                                'student': documentSnapshot['student_name'],
+                                              });
+                                            }
                                             FirebaseFirestore.instance.collection("Attendance").doc(documentSnapshot.id)
                                                 .update({"absence": value}).then(
                                                     (value) {
+
+
 
                                                 });
 

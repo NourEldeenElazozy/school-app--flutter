@@ -351,7 +351,9 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
             ),
 
           ],
-        ):    Container(
+        ):
+
+        Container(
           child: ListView.builder(
             itemCount: _searchResults.length,
             itemBuilder: (context, index) => Card(
@@ -444,7 +446,7 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
             ),
           ),
         ),
-        bottomNavigationBar: const Teachersbar(),
+        bottomNavigationBar:  Teachersbar(),
       ),
     );
   }}

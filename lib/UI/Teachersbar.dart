@@ -19,8 +19,13 @@ class Teachersbar extends StatefulWidget {
 }
 
 class _TeachersbarState extends State<Teachersbar> {
+
   @override
   Widget build(BuildContext context) {
+    if(currentIndex>2){
+      currentIndex=0;
+    }
+
     return Container(
       child: BottomNavigationBar(
         fixedColor:  mainColor,

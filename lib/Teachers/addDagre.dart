@@ -123,6 +123,11 @@ class _GradeEntryScreenState extends State<GradeEntryScreen> {
                       'second_grade': secondGrade,
                       'tottal': double.parse(firstGradeController.text)+double.parse(secondGradeController.text),
                     }).then((value) {
+                      FirebaseFirestore.instance.collection('notices').add({
+                        'date': DateTime.now(),
+                        'title': 'اضافة درجات مادة ${Teachers.subject}',
+                        'student': widget.searchResult,
+                      });
                       // تنفيذ الخطوات اللازمة عند الحفظ بنجاح
                       Navigator.pop(context);
                     }).catchError((error) {

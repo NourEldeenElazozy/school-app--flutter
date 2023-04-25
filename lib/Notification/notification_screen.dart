@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:students_mobile/UI/minu.dart';
+import 'package:students_mobile/Utiils/User.dart';
 import 'package:students_mobile/Utiils/colors.dart';
 import 'package:students_mobile/Utiils/common_widgets.dart';
 import 'package:students_mobile/shared/components/components.dart';
@@ -10,8 +11,7 @@ import 'package:timeago/timeago.dart' as timeago;
 
 class NotificationScreen extends StatelessWidget {
    NotificationScreen({Key? key}) : super(key: key);
-  final CollectionReference Notices =
-  FirebaseFirestore.instance.collection('Notices');
+
   @override
 
   Widget build(BuildContext context) {
@@ -22,12 +22,13 @@ class NotificationScreen extends StatelessWidget {
         children: [
           Flexible(
             child: StreamBuilder(
-              stream: Notices.snapshots(), //build connection
+              stream:   FirebaseFirestore.instance.collection('notices').where('student', isEqualTo: User.studentName).snapshots(), //build connection
               builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
 
                 if (streamSnapshot.hasData) {
+                  print(streamSnapshot.data!.docs.length);
                   return ListView.builder(
-                    itemCount:streamSnapshot.data!.size,  //number of rows
+                    itemCount:streamSnapshot.data!.docs.length,  //number of rows
                     itemBuilder: (context, index) {
                       final DocumentSnapshot documentSnapshot =
                       streamSnapshot.data!.docs[index];
@@ -60,7 +61,7 @@ class NotificationScreen extends StatelessWidget {
                                       children:  [
                                        Image(image: AssetImage('assets/images/logo.png'),width: 120,height: 120,fit: BoxFit.cover),
                                         bookText(
-                                            documentSnapshot['description '].toString(), ColorResources.grey777, 25),
+                                            documentSnapshot['title'].toString(), ColorResources.grey777, 18),
 
                                       ],
                                     ),

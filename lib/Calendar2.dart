@@ -51,15 +51,16 @@ class _CalendarAppState extends State<CalendarApp> {
 
         absence='غياب';
       }
-                DateTime date = DateFormat('yyyy-MM-dd').parse(dateString);
+
+                DateTime date = DateFormat('yyyy-MM-dd').parse(result['ddate']);
               meetings.add(
 
                 Meeting(
 
 
                     absence,
-                    DateTime.parse( result['ddate']),
-                    DateTime.parse(result['ddate']),
+                    date,
+                    date,
                      Color(color),
                     false),
               );
@@ -79,6 +80,7 @@ class _CalendarAppState extends State<CalendarApp> {
 
     _getDataSource();
     return Scaffold(
+
         body: FutureBuilder(
           future:  _getDataSource(),
           builder: (context, snapshot) {

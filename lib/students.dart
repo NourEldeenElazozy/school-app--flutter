@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:students_mobile/Utiils/User.dart';
 
 class StudentGradesScreen extends StatelessWidget {
   final String studentName;
@@ -27,47 +29,60 @@ class StudentGradesScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+
               Text(
                 'المواد:',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 8),
               Expanded(
-                child: ListView.builder(
-                  itemCount: grades.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    String subject = grades[index]['subject'];
-                    int grade = grades[index]['grade'];
-                    int one = grades[index]['one'];
-                    int two = grades[index]['two'];
-                    double percentage = total > 0 ? (grade / total) * 100 : 0;
-                    return Card(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 4),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              '$subject',
-                              style: TextStyle(fontSize: 16),
+                child: StreamBuilder(
+                  stream: FirebaseFirestore.instance.collection('Dagres').
+
+                  where('student', isEqualTo: User.studentName) .
+
+                  snapshots(),
+              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+    if (!snapshot.hasData) {
+    return Center(child: CircularProgressIndicator());
+    } else {
+                    return  ListView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        DocumentSnapshot document = snapshot.data!.docs[index];
+
+
+                        return Card(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 4),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  document['subject'].toString(),
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                                Text(
+                                  ' الجزئي ${  document['first_grade'].toString()} ',
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                                Text(
+                                  ' النهائي ${  document['second_grade'].toString()} ',
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                                Text(
+                                  ' الاجمالي ${  document['tottal'].toString()} ',
+                                  style: TextStyle(fontSize: 16),
+                                ),
+
+                              ],
                             ),
-                            Text(
-                              ' الجزئي $one ',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                            Text(
-                            ' النهائي$two ',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                            Text(
-                              'الإجمالي $grade ',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ],
-                        ),
-                      ),
+                          ),
+                        );
+                      },
                     );
-                  },
+              }}
+
                 ),
               ),
               SizedBox(height: 8),

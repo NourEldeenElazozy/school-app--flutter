@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:students_mobile/Utiils/User.dart';
 import 'package:students_mobile/shared/components/components.dart';
 class GradeEntryScreen extends StatefulWidget {
 
@@ -54,25 +55,7 @@ class _GradeEntryScreenState extends State<GradeEntryScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Container(
-                        child:  DropdownButtonFormField<String>(
-                          decoration: InputDecoration(
-                            labelText: 'المادة',
-                            border: OutlineInputBorder(),
-                          ),
-                          value: _selectedSubject,
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              _selectedSubject = newValue;
-                            });
-                          },
-                          items: _subjects.map((String subject) {
-                            return DropdownMenuItem<String>(
-                              value: subject,
-                              child: Text(subject),
-                            );
-                          }).toList(),
-                        ),),
+
                       SizedBox(height: 10),
                       TextFormField(
                         decoration: const InputDecoration(
@@ -134,6 +117,7 @@ class _GradeEntryScreenState extends State<GradeEntryScreen> {
 
                   if (firstGrade != null && secondGrade != null) {
                     FirebaseFirestore.instance.collection('Dagres').add({
+                      'subject': Teachers.subject,
                       'student': widget.searchResult,
                       'first_grade': firstGrade,
                       'second_grade': secondGrade,

@@ -69,8 +69,9 @@ class Languages extends Translations {
       'LogType': 'Log in as a registered attendee',
       'AppV': 'App Version v1.0',
       'WelcomeText': 'Sign in to be able to use the application',
-      'UserName': 'UserName',
-      'PassWord': 'PassWord',
+      'Username': 'UserName',
+      'Password': 'PassWord',
+
       'LogIn': 'LogIn',
       'ErrorMsg': 'The username or password is incorrect',
       'Ok': 'Ok',

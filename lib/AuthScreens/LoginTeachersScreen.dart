@@ -67,7 +67,7 @@ class _LoginTeachersScreenState extends State<LoginTeachersScreen> {
       child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(  centerTitle: true,backgroundColor: mainColor,
-            title:  const Text('SCHOOL APP', textAlign: TextAlign.center),
+            title:   const Text('Our School', textAlign: TextAlign.center),
           ),
           body:  Form(
             key: formKey,
@@ -84,8 +84,8 @@ class _LoginTeachersScreenState extends State<LoginTeachersScreen> {
 
                       ),
 
-                      const Text(
-                        'Sign in As a teacher to manage your students'
+                       Text(
+                        'Sign in As a teacher to manage your students'.tr
                       ),
                       const SizedBox(
                         height: 20.0,
@@ -99,7 +99,7 @@ class _LoginTeachersScreenState extends State<LoginTeachersScreen> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             print('dd');
-                            return 'error';
+                            return 'error'.tr;
                           }
                           return null;
                         },
@@ -167,12 +167,12 @@ class _LoginTeachersScreenState extends State<LoginTeachersScreen> {
                                 if (test == 'no data') {
                                   final snackBar = SnackBar(
                                     content: mediumText(
-                                        'اسم المستخدم او كلمة المرور غير صحيحة',
+                                        'Username or password is incorrect'.tr,
                                         ColorResources.whiteF6F,
                                         14),
                                     backgroundColor: (Colors.red),
                                     action: SnackBarAction(
-                                      label: 'موافق',
+                                      label: 'OK',
                                       onPressed: () {},
                                     ),
                                   );
@@ -192,7 +192,7 @@ class _LoginTeachersScreenState extends State<LoginTeachersScreen> {
 
                            */
                               }
-                            },child: const Text('Sign in', style: TextStyle(
+                            },child:  Text('Sign in'.tr, style: TextStyle(
                               color: Colors.white,
                               fontSize: 16
                             ),)

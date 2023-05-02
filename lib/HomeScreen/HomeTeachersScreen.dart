@@ -113,7 +113,7 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
             },
 
             decoration: InputDecoration(
-              hintText: 'البحث على طالب',
+              hintText: 'Search For Student'.tr,
               prefixIcon: Icon(Icons.search)
             
             ),
@@ -164,7 +164,7 @@ class _HomeTeachersScreenState extends State<HomeTeachersScreen> {
                                                   setState(() {
                                                     final collection = FirebaseFirestore.instance.collection('posts').doc(documentSnapshot.id).delete().then((value) {
                                                       ScaffoldMessenger.of(context)
-                                                          .showSnackBar(SnackBar(content: Text('تم حذف المنشور'),backgroundColor: Colors.red,));
+                                                          .showSnackBar(SnackBar(content: Text('Post Deleted'.tr),backgroundColor: Colors.red,));
                                                     },);
 
                                                   });

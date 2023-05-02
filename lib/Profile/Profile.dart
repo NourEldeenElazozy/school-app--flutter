@@ -32,7 +32,7 @@ class _ProfileState extends State<Profile> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: mainColor,
-        title: const Text('SCHOOL APP', textAlign: TextAlign.center),
+        title: const Text('Our School', textAlign: TextAlign.center),
       ),
       body: Column(
         children:  [
@@ -60,7 +60,7 @@ class _ProfileState extends State<Profile> {
                             radius: 40, // Image radius
                             backgroundImage: AssetImage('assets/images/studentw.png'),
                           ),
-                          mediumText('الطالب/${User.name}', ColorResources.grey777, 20)
+                          mediumText('Student/ ${User.name}'.tr, ColorResources.grey777, 20)
                         ],
                       ),
 
@@ -140,17 +140,6 @@ class _ProfileState extends State<Profile> {
                   width: double.infinity,
                   child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                      ),
-
-                      onPressed: (){
-                        Get.to(WelcomeScreen());
-                      }, child: Text('Sign out'.tr)),
-                ),
-                Container(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                      style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
                       ),
 
@@ -163,6 +152,18 @@ class _ProfileState extends State<Profile> {
                           {'subject': 'الفنون','grade': 20,'one': 10,'two': 10,},
                         ],),);
                       }, child: Text('Dagrees'.tr)),
+                ),
+                
+                Container(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                      ),
+
+                      onPressed: (){
+                        Get.to(WelcomeScreen());
+                      }, child: Text('Sign out'.tr)),
                 ),
               ],
             ),

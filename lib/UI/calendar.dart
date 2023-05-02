@@ -179,14 +179,14 @@ class _TableEventsExampleState extends State<TableEventsExample> {
           appBar: AppBar(
             bottom:  TabBar(
               tabs: [
-                Tab(child: mediumText('المهام الاسبوعية', ColorResources.white, 18),),
-                Tab(child: mediumText('الحضور و الغياب', ColorResources.white, 18),),
+                Tab(child: mediumText('Tests'.tr, ColorResources.white, 18),),
+                Tab(child: mediumText('Attendence'.tr, ColorResources.white, 18),),
 
               ],
             ),
             centerTitle: true,
             backgroundColor: mainColor,
-            title: const Text('SCHOOL APP', textAlign: TextAlign.center),
+            title: const Text('Our School', textAlign: TextAlign.center),
           ),
           body: TabBarView(
             children: [
@@ -198,7 +198,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          mediumText('الإختبارات و المهام الإسبوعية',
+                          mediumText('Tests & Exams Schedule'.tr,
                               ColorResources.custom, 20)
                         ],
                       ),

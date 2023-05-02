@@ -132,7 +132,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: mainColor,
-          title: const Text('SCHOOL APP', textAlign: TextAlign.center),
+          title: const Text('Our School', textAlign: TextAlign.center),
         ),
         backgroundColor: ColorResources.whiteF6F,
         body: SingleChildScrollView(
@@ -159,7 +159,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                                     backgroundImage: AssetImage(
                                         'assets/images/instagram-post.png'),
                                   ),
-                                  title: mediumText('المعلم/$name',
+                                  title: mediumText('Teacher/$name'.tr,
                                       ColorResources.grey777, 20)),
                               const SizedBox(
                                 height: 20,
@@ -170,7 +170,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                                     maxLines: 1,
                                     controller: titleController,
                                     decoration: InputDecoration(
-                                      hintText: 'عنوان المنشور',
+                                      hintText: 'Add Post'.tr,
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: const BorderSide(
                                             width: 1,
@@ -189,7 +189,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                                     maxLines: 10,
                                     controller: contentController,
                                     decoration: InputDecoration(
-                                      hintText: 'محتوي المنشور',
+                                      hintText: 'Content'.tr,
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: const BorderSide(
                                             width: 1,
@@ -350,7 +350,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                                  Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      mediumText('الفصل الدراسي', ColorResources.black4A4, 16),
+                                      mediumText('class'.tr, ColorResources.black4A4, 16),
                                       DropdownButton<String>(
                                         hint: bookText(selectedLocation,ColorResources.black4A4,16),
 
@@ -402,8 +402,8 @@ class _AddPostScreenState extends State<AddPostScreen> {
                       Teachers.name,titleController.text,imageurl,dateSlug);
                   QuickAlert.show(
                     title: '',
-                    text:'تم إضافة المنشور بنجاح',
-                    confirmBtnText: 'موافق',
+                    text:'Post Added Succesfully'.tr,
+                    confirmBtnText: 'ok'.tr,
                     onConfirmBtnTap: () => Get.to(HomeTeachersScreen()),
                     context: context,
                     type: QuickAlertType.success,
@@ -411,7 +411,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
 
                 },
                 child: Padding(padding: EdgeInsets.all(20),
-                  child:commonButton(null , 'حفظ', ColorResources.custom, ColorResources.whiteF6F) ,
+                  child:commonButton(null , 'Save'.tr, ColorResources.custom, ColorResources.whiteF6F) ,
 
                 ),
               ),

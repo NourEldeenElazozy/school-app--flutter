@@ -145,6 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                           ),
                           labelText: 'Password'.tr,
+                          hintText: 'Password'.tr,
                           border: OutlineInputBorder(
                            borderRadius: BorderRadius.all(Radius.circular(20.0))),
                         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:students_mobile/HomeScreen/HomeScreen.dart';
 import 'package:students_mobile/HomeScreen/HomeTeachersScreen.dart';
 import 'package:students_mobile/Notification/notification_screen.dart';
@@ -63,20 +64,20 @@ class _TeachersbarState extends State<Teachersbar> {
 
         type: BottomNavigationBarType.fixed,
         currentIndex: currentIndex,
-        items: const [
+        items:  [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'الرئيسية',
+            label: 'Home'.tr,
             backgroundColor: Color.fromRGBO(2, 37, 73, 0.9254901960784314),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add_circle_outline),
-            label: 'إضافة منشور',
+            label: 'Add Post'.tr,
           ),
 
           BottomNavigationBarItem(
             icon: Icon(Icons.quiz_outlined),
-            label: 'إضافة اختبار',
+            label: 'Add Test'.tr,
           ),
 
         ],

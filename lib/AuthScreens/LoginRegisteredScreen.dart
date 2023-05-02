@@ -83,8 +83,8 @@ class _LoginRegisteredScreenState extends State<LoginRegisteredScreen> {
 
                       ),
 
-                      const Text(
-                        'Sign in As an Attendence Register to Manage Students',
+                       Text(
+                        'Sign in As an Attendence Register to Manage Students'.tr,
                       ),
                       const SizedBox(
                         height: 20.0,
@@ -102,11 +102,11 @@ class _LoginRegisteredScreenState extends State<LoginRegisteredScreen> {
                           }
                           return null;
                         },
-                        decoration: const InputDecoration(
+                        decoration:  InputDecoration(
                           prefixIcon: Icon(
                             Icons.supervised_user_circle_outlined,
                           ),
-                          labelText: "اسم المستخدم ",
+                          labelText: 'Username'.tr,
                           border:  OutlineInputBorder(
                            borderRadius: BorderRadius.all(Radius.circular(20.0)))
                         ),
@@ -138,7 +138,7 @@ class _LoginRegisteredScreenState extends State<LoginRegisteredScreen> {
                             },
 
                           ),
-                          labelText: 'كلمة المرور',
+                          labelText: 'Password'.tr,
                           border:  OutlineInputBorder(
                            borderRadius: BorderRadius.all(Radius.circular(20.0)))
                         ),
@@ -164,7 +164,7 @@ class _LoginRegisteredScreenState extends State<LoginRegisteredScreen> {
                                 if (test == 'no data') {
                                   final snackBar = SnackBar(
                                     content: mediumText(
-                                        'اسم المستخدم او كلمة المرور غير صحيحة',
+                                        '',
                                         ColorResources.whiteF6F,
                                         14),
                                     backgroundColor: (Colors.red),
@@ -189,7 +189,7 @@ class _LoginRegisteredScreenState extends State<LoginRegisteredScreen> {
 
                            */
                               }
-                            },child: const Text('دخول',  style: TextStyle(
+                            },child:  Text('Sign in'.tr,  style: TextStyle(
                               color: Colors.white,
                               fontSize: 16
                             ),)

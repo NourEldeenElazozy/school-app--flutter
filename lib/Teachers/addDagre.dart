@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 import 'package:students_mobile/Utiils/User.dart';
 import 'package:students_mobile/shared/components/components.dart';
 class GradeEntryScreen extends StatefulWidget {
@@ -58,18 +59,18 @@ class _GradeEntryScreenState extends State<GradeEntryScreen> {
 
                       SizedBox(height: 10),
                       TextFormField(
-                        decoration: const InputDecoration(
-                          labelText: 'اعمال السنه',
+                        decoration:  InputDecoration(
+                          labelText: 'School Work'.tr,
                           border: OutlineInputBorder(),
                         ),
                         controller: firstGradeController,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'يرجى إدخال الدرجة ';
+                            return 'Please Enter Mark'.tr;
                           }
                           final number = double.tryParse(value);
                           if (number == null) {
-                            return 'يرجى إدخال رقم صالح';
+                            return 'Please Enter a valid mark'.tr;
                           }
                           return null;
                         },
@@ -78,8 +79,8 @@ class _GradeEntryScreenState extends State<GradeEntryScreen> {
                         height: 16.0,
                       ),
                       TextFormField(
-                        decoration: const InputDecoration(
-                          labelText: 'امتحان نهائي',
+                        decoration:  InputDecoration(
+                          labelText: 'Final Exam'.tr,
                           border: OutlineInputBorder(),
                         ),
                         controller: secondGradeController,
@@ -87,11 +88,11 @@ class _GradeEntryScreenState extends State<GradeEntryScreen> {
                         validator: (value) {
 
                           if (value!.isEmpty) {
-                            return 'يرجى إدخال الدرجة ';
+                            return 'Please enter a mark'.tr;
                           }
                           final number = double.tryParse(value);
                           if (number == null) {
-                            return 'يرجى إدخال رقم صالح';
+                            return 'Please Enter a valid mark'.tr;
                           }
                           return null;
                         },
@@ -136,14 +137,14 @@ class _GradeEntryScreenState extends State<GradeEntryScreen> {
                     });
                   }else{
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
+                       SnackBar(
                         backgroundColor: Colors.red,
-                        content: Text('يرجي مراجعة البيانات'),
+                        content: Text('Please Review your data'.tr),
                       ),
                     );
                   }
                 },
-                child: const Text('حفظ'),
+                child:  Text('Save'.tr),
               ),
             ),
           ],

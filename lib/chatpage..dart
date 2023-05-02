@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:students_mobile/ChatScreen.dart';
 import 'package:students_mobile/Utiils/User.dart';
 import 'package:students_mobile/Utiils/colors.dart';
@@ -98,7 +99,7 @@ print( User.ticket);
       child: Scaffold(
         appBar: AppBar(backgroundColor: Colors.green,title:
           mediumText(
-           'الدعم الفني',ColorResources.whiteF6F,22
+           'Chat Support'.tr,ColorResources.whiteF6F,22
         )),
         body: SingleChildScrollView(
           child: Column(
@@ -122,7 +123,7 @@ print( User.ticket);
                         decoration: InputDecoration(
                           filled: true,
                           fillColor:Colors.black87.withAlpha(30),
-                          hintText: 'محتوي الرسالة',
+                          hintText: 'Write Here'.tr,
                           hintStyle: TextStyle(color: ColorResources.black4A4,fontFamily: TextFontFamily.KHALED_FONT),
                           enabled: true,
                           contentPadding: const EdgeInsets.only(

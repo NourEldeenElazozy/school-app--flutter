@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:students_mobile/Utiils/User.dart';
 
 class StudentGradesScreen extends StatelessWidget {
@@ -21,7 +22,7 @@ class StudentGradesScreen extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.green,
-          title: Text('درجات الطالب $studentName'),
+          title: Text(' $studentName Marks'.tr),
         ),
         body: Padding(
           padding: EdgeInsets.all(16.0),
@@ -40,9 +41,9 @@ class StudentGradesScreen extends StatelessWidget {
                     builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) {
                       if (snapshot.data!.docs.isEmpty) {
-                       return const Center(
+                       return  Center(
                          child: Text(
-                            'لايوجد بيانات ',
+                            'No marks yet, try again later'.tr,
                             style: TextStyle(fontSize: 22),
                           ),
                        );

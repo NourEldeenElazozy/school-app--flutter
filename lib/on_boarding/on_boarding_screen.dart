@@ -35,6 +35,7 @@ class _OnBoardScreenState extends State<OnBoardScreen>
         image: 'assets/images/bo1.png',
         title:'Perfect Environment for your children',
         body: 'Our School is Where you can watch your kids school performance from home',
+        
       ),
       BoardModel(
         image: 'assets/images/bo2.png',

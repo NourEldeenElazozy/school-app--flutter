@@ -17,6 +17,7 @@ class _messagesState extends State<messages> {
   logInmethod(sender) async {
     await FirebaseFirestore.instance
         .collection('services')
+
         .where("sender", isEqualTo: User.name)
         .get()
         .then((event) {
@@ -40,7 +41,7 @@ class _messagesState extends State<messages> {
 
   final Stream<QuerySnapshot> _messageStream = FirebaseFirestore.instance
       .collection('services')
-     // .orderBy("date",descending: false)
+      .orderBy("date",descending: false)
      .where("sender", whereIn: [User.name, "admin"])
       .where("ticket", isEqualTo: User.ticket)
 

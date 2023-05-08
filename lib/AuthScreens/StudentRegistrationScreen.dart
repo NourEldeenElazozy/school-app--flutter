@@ -236,6 +236,7 @@ class _StudentRegistrationScreenState extends State<StudentRegistrationScreen> {
                         'idNumber': _idController.text,
                         'password': _passwordController.text,
                         'username': _usernameController.text,
+                        'createdAt': FieldValue.serverTimestamp(),
                         'section': {
                           'label': _selectedSectionName,
                           'value': _selectedSectionId,
